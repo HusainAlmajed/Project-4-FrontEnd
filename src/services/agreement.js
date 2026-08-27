@@ -23,3 +23,20 @@ const getAllAgreements = async () => {
         throw error
     }
 }
+
+const getMyAgreements = async () => {
+    try {
+        const response = await fetch(`${BASE_URL}/my-agreements`, {
+            method: 'GET',
+            headers: getHeaders()
+        })
+        if (!response.ok) {
+            throw new Error('Failed to fetch my agreements')
+        }
+        const data = await response.json()
+        return data
+    } catch (error) {
+        console.error('Error fetching my agreements:', error)
+        throw error
+    }
+}
