@@ -75,3 +75,21 @@ const show = async (agreementId) => {
         throw error
     }
 }
+
+const update = async (agreementId, updatedData) => {
+    try {
+        const response = await fetch(`${BASE_URL}/${agreementId}`, {
+            method: 'PUT',
+            headers: getHeaders(),
+            body: JSON.stringify(updatedData)
+        })
+        if (!response.ok) {
+            throw new Error('Failed to update agreement')
+        }
+        const data = await response.json()
+        return data
+    } catch (error) {
+        console.error('Error updating agreement:', error)
+        throw error
+    }
+}
