@@ -1,6 +1,7 @@
 // import Nav from "./components/Nav"
 // import SignUpForm from "./pages/SignUpForm"
 import './App.css'
+import Nav from './components/Nav'
 // import { Routes, Route, useNavigate } from "react-router"
 // import { useState, useEffect } from "react"
 // import SignInForm from "./pages/SignInForm"
@@ -23,6 +24,7 @@ const App = () => {
 
   return (
     <div>
+      <Nav />
       <h1>Welcome to the Blog App</h1>
     </div>
   )
