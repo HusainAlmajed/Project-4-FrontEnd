@@ -40,3 +40,21 @@ const getMyAgreements = async () => {
         throw error
     }
 }
+
+const create = async (agreementData) => {
+    try {
+        const response = await fetch(BASE_URL, {
+            method: 'POST',
+            headers: getHeaders(),
+            body: JSON.stringify(agreementData)
+        })
+        if (!response.ok) {
+            throw new Error('Failed to create agreement')
+        }
+        const data = await response.json()
+        return data
+    } catch (error) {
+        console.error('Error creating agreement:', error)
+        throw error
+    }
+}
