@@ -1,16 +1,11 @@
-// import Nav from "./components/Nav"
+import Nav from "./components/Nav"
 // import SignUpForm from "./pages/SignUpForm"
 import './App.css'
-import Nav from './components/Nav'
 // import { Routes, Route, useNavigate } from "react-router"
 // import { useState, useEffect } from "react"
 // import SignInForm from "./pages/SignInForm"
 // import Landing from "./pages/Landing"
-// import Dashboard from "./pages/Dashboard"
-// import PostList from "./pages/PostList"
-// import * as postServices from './services/posts'
-// import PostDetails from "./pages/PostDetails"
-// import PostForm from "./pages/PostForm"
+import Dashboard from "./pages/Dashboard"
 // import { useParams } from "react-router"
 
 
@@ -25,6 +20,7 @@ const App = () => {
   return (
     <div>
       <Nav />
+      <Dashboard />
       <h1>Welcome to the Blog App</h1>
     </div>
   )
