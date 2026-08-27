@@ -7,6 +7,24 @@ const  getHeaders = () => {
     }
 }
 
+const create = async (agreementData) => {
+    try {
+        const response = await fetch(BASE_URL, {
+            method: 'POST',
+            headers: getHeaders(),
+            body: JSON.stringify(agreementData)
+        })
+        if (!response.ok) {
+            throw new Error('Failed to create agreement')
+        }
+        const data = await response.json()
+        return data
+    } catch (error) {
+        console.error('Error creating agreement:', error)
+        throw error
+    }
+}
+
 const getAllAgreements = async () => {
     try {
         const response = await fetch(BASE_URL, {
@@ -41,20 +59,19 @@ const getMyAgreements = async () => {
     }
 }
 
-const create = async (agreementData) => {
+const show = async (agreementId) => {
     try {
-        const response = await fetch(BASE_URL, {
-            method: 'POST',
-            headers: getHeaders(),
-            body: JSON.stringify(agreementData)
-        })
+        const response = await fetch(`${BASE_URL}/${agreementId}`, {
+            method: 'GET',
+            headers: getHeaders()
+        })  
         if (!response.ok) {
-            throw new Error('Failed to create agreement')
+            throw new Error('Failed to fetch agreement')
         }
         const data = await response.json()
         return data
     } catch (error) {
-        console.error('Error creating agreement:', error)
+        console.error('Error fetching agreement:', error)
         throw error
     }
 }
