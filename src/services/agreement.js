@@ -93,3 +93,21 @@ const update = async (agreementId, updatedData) => {
         throw error
     }
 }
+
+const deleteAgreement = async (agreementId) => {
+    try {
+        const response = await fetch(`${BASE_URL}/${agreementId}`, {
+            method: 'DELETE',
+            headers: getHeaders()
+        })
+        if (!response.ok) {
+            throw new Error('Failed to delete agreement')
+        }
+        return true
+    } catch (error) {
+        console.error('Error deleting agreement:', error)
+        throw error
+    }
+}
+
+export { create, getAllAgreements, getMyAgreements, show, update, deleteAgreement }
