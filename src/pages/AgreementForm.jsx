@@ -43,6 +43,32 @@ const AgreementForm = (props) => {
             console.error('Error submitting agreement form:', error)
         }
     }
+
+    useEffect(() => {
+        const fetchAgreement = async () => {
+             
+            const agreementData = await agreementServices.show(agreementId)
+
+            setFormData({
+                type: agreementData.type,
+                startDate: agreementData.startDate,
+                endDate: agreementData.endDate,
+                status: agreementData.status,
+                description: agreementData.description,
+
+                assetName: agreementData.assetName,
+                assetType: agreementData.assetType,
+            })
+        }
+        if (agreementId) {
+            fetchAgreement()
+        }
+
+        return () => {
+            setFormData(initialState)
+        }
+    }, [agreementId])
+
  
 
     return (
