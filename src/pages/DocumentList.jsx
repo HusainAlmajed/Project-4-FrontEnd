@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useParams } from "react-router"
+import { useParams , Link } from "react-router"
 import * as documentServices from "../services/document"
 
 const DocumentList = () => {
@@ -28,6 +28,7 @@ const DocumentList = () => {
     return (
         <div>
             <h1>Document List</h1>
+            <Link to={`/agreements/${agreementId}/documents/new`}>Add Document</Link>
 
             {documents.length === 0 ? (<p>No documents added yet</p>) : (
                 <ul>

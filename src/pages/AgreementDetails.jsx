@@ -44,7 +44,7 @@ const AgreementDetails = (props) => {
              <>
             <button onClick={() => props.handleEditAgreement(agreement._id)}>Edit</button>
             <button onClick={() => props.handleDeleteAgreement(agreement._id)}>Delete</button>
-            <Link to={`/agreements/${agreement._id}/documents/new`}>Add Documents</Link>
+            <Link to={`/agreements/${agreement._id}/documents`}>View Documents</Link>
             </>
             
             )}
