@@ -36,6 +36,12 @@ const App = () => {
     
   }, [user])
 
+  const handleAddAgreement = async (agreementData) => {
+    const newAgreement = await agreementServices.create(agreementData)
+    setAgreements([newAgreement, ...agreements])
+    navigate('/dashboard')
+  }
+
   return (
     <div>
       <Nav />
