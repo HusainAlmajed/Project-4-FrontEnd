@@ -1,11 +1,11 @@
-import { useState } from "react"
+import { useState , useEffect} from "react"
 import * as documentServices from "../services/document"
 import { useNavigate , useParams } from "react-router"
 
 const DocumentForm = () => {
 
     const navigate = useNavigate()
-    const { agreementId } = useParams()
+    const { agreementId , documentId} = useParams()
 
     const initialState = {
         title: '',
@@ -16,6 +16,26 @@ const DocumentForm = () => {
     const [formData , setFormData] = useState(initialState)
     const [message , setMessage] = useState('')
 
+    useEffect(() => {
+      const fetchDocument = async () => {
+        try {
+          const documentData = await documentServices.show(documentId)
+
+        setFormData({
+          title: documentData.title,
+          documentType: documentData.documentType,
+          url: documentData.url,
+        })
+      } catch (error) {
+        setMessage(error.message)
+    }
+  }
+
+  if (documentId) {
+    fetchDocument()
+  }
+}, [documentId])
+
     const handleChange = (event) => {
         setFormData({...formData , [event.target.name]: event.target.value })
     }
@@ -24,11 +44,14 @@ const DocumentForm = () => {
         event.preventDefault()
 
         try {
-            await documentServices.create({
+          if (documentId) {
+            await documentServices.update(documentId , formData)
+          }else{
+              await documentServices.create({
                 ...formData,
                 agreement: agreementId
             })
-            navigate(`/agreements/${agreementId}/documents`)
+           } navigate(`/agreements/${agreementId}/documents`)
         } catch (error) {
             setMessage(error.message)
         }
@@ -36,7 +59,7 @@ const DocumentForm = () => {
 
     return (
         <div>
-        <h1>Add Document</h1>
+        <h1>{documentId ? "Edit Document" : "Add Document"}</h1>
 
         <form onSubmit={handleSubmit}>
             <label>
@@ -84,7 +107,7 @@ const DocumentForm = () => {
 
         <br />
 
-        <button type="submit">Add Document</button>
+        <button type="submit">{documentId ? "Update Document" : "Add Document"}</button>
         </form>
         {message && <p>{message}</p>}
         </div>

@@ -99,6 +99,8 @@ const App = () => {
 
         <Route path="/agreements/:agreementId/documents/new" element={<DocumentForm />} />
 
+        <Route path="/agreements/:agreementId/documents/:documentId/edit" element={<DocumentForm />} />
+
         <Route path="/agreements/:agreementId/documents" element={<DocumentList />} />
 
       </Routes>

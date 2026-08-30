@@ -44,6 +44,7 @@ const DocumentList = () => {
                             <p>{document.documentType}</p>
                             <a href="{document.url}">View document</a>
                             
+                            <Link to={`/agreements/${agreementId}/documents/${document._id}/edit`}>Edit</Link>
                             <button onClick={() => handleDeleteDocument(document._id)}>Delete</button>
                         </li>
                     ))}
