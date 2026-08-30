@@ -19,7 +19,7 @@ const CustomerSignUpForm = (props) => {
 
     const handleChange = (event) => {
         setFormData({ ...formData, [event.target.name]: event.target.value })
-    } 
+    }
 
     const validatePassword = (password) => {
         if (password.length < 8) {
@@ -44,4 +44,94 @@ const CustomerSignUpForm = (props) => {
 
         return ""
     }
+
+    const handleSubmit = async (event) => {
+        event.preventDefault()
+
+        const passwordError = validatePassword(formData.password)
+
+        if (passwordError) {
+            setMessage(passwordError)
+            return
+        }
+        if (formData.password !== formData.confirmPassword) {
+            setMessage("Passwords do not match.")
+            return
+        }
+        try {
+            const { confirmPassword, ...userData } = formData
+
+            const data = await customerSignUp(userData)
+
+            localStorage.setItem("token", data.token)
+
+            setMessage("Account created successfully!")
+
+            navigate("/")
+        } catch (error) {
+            setMessage(error.message)
+        }
+    }
+
+    return (
+        <div>
+            <h1>Customer Sign Up</h1>
+
+            <form onSubmit={handleSubmit}>
+                <label htmlFor="username">Username</label>
+                <input
+                    type="text"
+                    name="username"
+                    placeholder="Username"
+                    value={formData.username}
+                    onChange={handleChange}
+                />
+
+                <label htmlFor="email">Email</label>
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                    value={formData.email}
+                    onChange={handleChange}
+                />
+
+                <label htmlFor="phone">Phone</label>
+                <input
+                    type="tel"
+                    name="phone"
+                    placeholder="Phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                />
+
+                <label htmlFor="password">Password</label>
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    value={formData.password}
+                    onChange={handleChange}
+                />
+
+                <label htmlFor="confirmPassword">Confirm Password</label>
+                <input
+                    type="password"
+                    name="confirmPassword"
+                    placeholder="Confirm Password"
+                    value={formData.confirmPassword}
+                    onChange={handleChange}
+                />
+
+                <button type="submit">
+                    Sign Up
+                </button>
+
+            </form>
+
+            {message && <p>{message}</p>}
+        </div>
+    )
 }
+
+export default CustomerSignUpForm
