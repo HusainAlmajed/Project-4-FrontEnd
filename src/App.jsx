@@ -47,6 +47,18 @@ const App = () => {
     navigate("/dashboard")
   }
 
+  const handleUpdateAgreement = async (agreementId, formData) => {
+    const updatedAgreement = await agreementServices.update(agreementId, formData)
+
+    const updatedAgreements = agreements.map((agreement) =>{
+      agreement._id === agreementId ? updatedAgreement : agreement
+  })
+
+  setAgreements(updatedAgreements)
+  navigate("/dashboard")
+  }
+
+
   return (
     <div>
       <Nav />
