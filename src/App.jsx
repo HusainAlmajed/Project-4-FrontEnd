@@ -1,6 +1,6 @@
 import Nav from "./components/Nav"
-import CustomerSignUpForm from "./components/CustomerSignUp"
-import OwnerSignUpForm from "./components/OwnerSignUp"
+import CustomerSignUpForm from "./pages/CustomerSignUp.jsx"
+import OwnerSignUpForm from "./pages/OwnerSignUp.jsx"
 import './App.css'
 import { Routes, Route, useNavigate } from "react-router"
 import { useState, useEffect } from "react"
@@ -11,6 +11,7 @@ import { useParams } from "react-router"
 import AgreementForm from "./pages/AgreementForm"
 
 import * as agreementServices from "./services/agreement.js"
+import SignInForm from "./pages/SignIn.jsx"
 
 const getUserFromToken = () => {
   const token = localStorage.getItem("token")
@@ -62,7 +63,7 @@ const App = () => {
 
         <Route path="/sign-up/owner" element={<OwnerSignUpForm />}/>
 
-        {/* <Route path="/sign-in" element={<SignInForm />}/> */}
+        <Route path="/sign-in" element={<SignInForm />}/>
 
         <Route path="/dashboard"element={<Dashboard agreements={agreements} />}/>
 
