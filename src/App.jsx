@@ -51,13 +51,13 @@ const App = () => {
 
     setAgreements([newAgreement, ...agreements])
 
-    navigate("/dashboard")
+    navigate("/agreements-list")
   }
 
   const handleDeleteAgreement = async (agreementId) => {
     await agreementServices.deleteAgreement(agreementId)
     setAgreements(agreements.filter((agreement) => agreement._id !== agreementId))
-    navigate("/dashboard")
+    navigate("/agreements-list")
   }
 
   const handleUpdateAgreement = async (agreementId, formData) => {
@@ -89,11 +89,11 @@ const App = () => {
 
         <Route path="/dashboard" element={<Dashboard agreements={agreements} />} />
 
-        <Route path="/agreements" element={<AgreementForm handleAddAgreement={handleAddAgreement}/>} />
+        <Route path="/agreements" element={<AgreementForm handleAddAgreement={handleAddAgreement} />} />
 
         <Route path="/agreements/:agreementId" element={<AgreementDetails user={user} handleEditAgreement={handleUpdateAgreement} handleDeleteAgreement={handleDeleteAgreement} />} />
 
-        <Route path="/agreements-list" element={<AgreementList agreements={agreements}/>} />
+        <Route path="/agreements-list" element={<AgreementList agreements={agreements} user={user} />} />
       </Routes>
     </div>
   )
