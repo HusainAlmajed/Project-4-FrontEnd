@@ -12,6 +12,10 @@ const AgreementForm = (props) => {
         endDate: "",
         status: "active",
         description: "",
+
+        // asset information
+        assetName: "",
+        assetType: "",
     }
 
     const [formData, setFormData] = useState(initialState)
@@ -51,6 +55,8 @@ const AgreementForm = (props) => {
                     endDate: agreementData.endDate,
                     status: agreementData.status ,
                     description: agreementData.description ,
+                    name: agreementData.asset.name,
+                    assetType: agreementData.asset.type,
                 })
             } catch (error) {
                 console.error("Error fetching agreement:", error)
@@ -139,6 +145,38 @@ const AgreementForm = (props) => {
                 </label>
 
                 <br />
+
+                <h3>Asset Information</h3>
+
+                <label>
+                    Asset Name:
+                    <input
+                        name="assetName"
+                        value={formData.assetName}
+                        onChange={handleChange}
+                        placeholder="Enter the asset name"
+                    />
+                </label>
+
+                <br />
+
+                <label>
+
+                    Asset Type:
+                    <select
+                        name="assetType"
+                        value={formData.assetType}
+                        onChange={handleChange}
+                        placeholder="Enter the asset type"
+                    >
+                        <option value="">Select an asset type</option>
+                        <option value="equipment">Equipment</option>
+                        <option value="electronic">Electronic</option>
+                        <option value="vehicle">Vehicle</option>
+                        <option value="property">Property</option>
+                        <option value="other">Other</option>
+                    </select>
+                </label>
 
                 <button type="submit">
                     {agreementId ? "Update Agreement" : "Create Agreement"}

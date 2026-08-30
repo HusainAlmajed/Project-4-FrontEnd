@@ -35,6 +35,9 @@ const AgreementDetails = (props) => {
             <p><strong>End Date:</strong> {new Date(agreement.endDate).toLocaleDateString()}</p>
             <p><strong>Status:</strong> {agreement.status}</p>
             <p><strong>Description:</strong> {agreement.description}</p>
+            <h2>Asset Information</h2>
+            <p><strong>Name:</strong> {agreement.asset.name}</p>
+            <p><strong>Type:</strong> {agreement.asset.assetType}</p>
             {props.user && 
             props.user.role === "owner" &&
              String(props.user._id) === String(agreement.owner._id) && (

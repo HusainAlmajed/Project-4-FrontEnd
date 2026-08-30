@@ -26,7 +26,7 @@ const AgreementList = (props) => {
                         </Link>
                     </li>
                 ))}
-            </ul>
+            </ul> 
             )}
         </div>
             
