@@ -24,7 +24,7 @@ const App = () => {
     <div>
       <Nav />
       <Dashboard />
-      <h1>Welcome to the Blog App</h1>
+      {/* <h1>Welcome to the Blog App</h1> */}
       <Routes>
         <Route path="/sign-up/customer" element={<CustomerSignUpForm />}/>
 
