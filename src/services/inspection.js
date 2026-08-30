@@ -32,7 +32,7 @@ const index = async () => {
     }
 }
 
-const show = async (inspectionData) => {
+const show = async (inspectionId) => {
     try {
         const res = await fetch (`${BASE_URL}/${inspectionId}` , {
             headers: {
