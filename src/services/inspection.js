@@ -64,9 +64,26 @@ const update = async (inspectionId , inspectionData) => {
     }
 }
 
+const deleteInspection = async (inspectionId) => {
+    try {
+        const res = await fetch(`${BASE_URL}/${inspectionId}`, {
+            method: 'DELETE',
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    })
+
+    const data = await res.json()
+    return data
+    } catch (error) {
+       console.log(error) 
+    }
+}
+
 export {
     create,
     index,
     show,
     update,
+    deleteInspection,
 }
