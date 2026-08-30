@@ -34,7 +34,7 @@ const AgreementForm = (props) => {
             }
 
             setFormData(initialState)
-            navigate("/dashboard")
+            navigate("/agreements-list")
         } catch (error) {
             console.error("Error submitting agreement form:", error)
         }
