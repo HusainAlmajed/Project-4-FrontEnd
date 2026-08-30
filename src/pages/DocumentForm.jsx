@@ -1,4 +1,19 @@
+import { useState } from "react"
+
 const DocumentForm = () => {
+
+    const initialState = {
+        title: '',
+        documentType: 'contract',
+        url: '',
+    }
+
+    const [formData , setFormData] = useState(initialState)
+
+    const handleChange = (event) => {
+        setFormData({...formData , [event.target.name]: event.target.value })
+    }
+
 
     return (
         <div>
@@ -12,6 +27,8 @@ const DocumentForm = () => {
             name="title"
             placeholder="e.g. iPhone receipt"
             required
+            value={formData.title}
+            onChange={handleChange}
           />
         </label>
 
@@ -19,7 +36,11 @@ const DocumentForm = () => {
 
         <label>
           Document Type:
-          <select name = "documentType">
+          <select 
+          name = "documentType"
+          value={formData.documentType}
+          onChange={handleChange}
+          >
             <option value="contract">Contract</option>
             <option value="receipt">Receipt</option>
             <option value="warranty">Warranty</option>
@@ -37,6 +58,8 @@ const DocumentForm = () => {
             name="url"
             placeholder="https://example.com/document.pdf"
             required
+            value={formData.url}
+            onChange={handleChange}
           />
         </label>
 
