@@ -3,7 +3,7 @@ import { customerSignUp } from "../services/authServices";
 import { useNavigate } from "react-router";
 
 
-const CustomerSignUpForm = (props) => {
+const CustomerSignUpForm = ({setUser}) => {
     const navigate = useNavigate()
 
     const initialState = {
@@ -65,7 +65,9 @@ const CustomerSignUpForm = (props) => {
 
             localStorage.setItem("token", data.token)
 
-            setMessage("Account created successfully!")
+            const user = JSON.parse(atob(data.token.split('.')[1])).payload
+
+            setUser(user)
 
             navigate("/")
         } catch (error) {

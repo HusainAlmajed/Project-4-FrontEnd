@@ -74,15 +74,15 @@ const App = () => {
 
   return (
     <div>
+        <Nav user={user} setUser={setUser} />
       <Routes>
 
         <Route path="/" element={<h1>Welcome to the Warranty App</h1>} />
 
-        <Nav user={user} setUser={setUser} />
 
-        <Route path="/sign-up/customer" element={<CustomerSignUpForm />} />
+        <Route path="/sign-up/customer" element={<CustomerSignUpForm setUser={setUser}/>} />
 
-        <Route path="/sign-up/owner" element={<OwnerSignUpForm />} />
+        <Route path="/sign-up/owner" element={<OwnerSignUpForm setUser={setUser}/>} />
 
         <Route path="/sign-in" element={<SignInForm setUser={setUser}/>} />
 

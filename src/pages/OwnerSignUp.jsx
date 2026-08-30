@@ -3,7 +3,7 @@ import { ownerSignUp } from "../services/authServices";
 import { useNavigate } from "react-router";
 
 
-const OwnerSignUpForm = (props) => {
+const OwnerSignUpForm = (setUser) => {
     const navigate = useNavigate()
 
     const initialState = {
@@ -69,7 +69,9 @@ const OwnerSignUpForm = (props) => {
             const data = await ownerSignUp(ownerData)
 
             localStorage.setItem("token", data.token)
-            setMessage("Owner account created successfully!")
+            const user = JSON.parse(atob(data.token.split('.')[1])).payload
+
+            setUser(user)
             navigate('/')
         } catch (error) {
             setMessage(error.message)
