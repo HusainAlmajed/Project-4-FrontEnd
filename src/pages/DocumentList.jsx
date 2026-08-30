@@ -21,6 +21,12 @@ const DocumentList = () => {
         fetchDocuments()
     }, [agreementId])
 
+    const handleDeleteDocument = async (documentId) => {
+        await documentServices.deleteDocument(documentId)
+
+        setDocuments(documents.filter((document) => document._id !== documentId))
+    }
+
     if (loading) {
         return <h2>Loading documents...</h2>
     }
@@ -37,6 +43,8 @@ const DocumentList = () => {
                             <p>{document.title}</p>
                             <p>{document.documentType}</p>
                             <a href="{document.url}">View document</a>
+                            
+                            <button onClick={() => handleDeleteDocument(document._id)}>Delete</button>
                         </li>
                     ))}
                 </ul>
