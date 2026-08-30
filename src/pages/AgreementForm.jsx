@@ -27,6 +27,22 @@ const AgreementForm = (props) => {
         })
     }
 
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+
+        try {
+            if (agreementId) {
+               await props.handleUpdateAgreement(agreementId, formData)
+            } else {
+                await props.handleAddAgreement(formData)
+            }
+
+            setFormData(initialState)
+            navigate('/dashboard')
+        } catch (error) {
+            console.error('Error submitting agreement form:', error)
+        }
+    }
  
 
     return (
