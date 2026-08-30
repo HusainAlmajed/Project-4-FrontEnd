@@ -1,5 +1,6 @@
 import Nav from "./components/Nav"
 import CustomerSignUpForm from "./components/CustomerSignUp"
+import OwnerSignUpForm from "./components/OwnerSignUp"
 import './App.css'
 import { Routes, Route, useNavigate } from "react-router"
 import { useState, useEffect } from "react"
@@ -27,7 +28,7 @@ const App = () => {
       <Routes>
         <Route path="/sign-up/customer" element={<CustomerSignUpForm />}/>
 
-        {/* <Route path="/sign-up/owner" element={<OwnerSignUpForm />}/> */}
+        <Route path="/sign-up/owner" element={<OwnerSignUpForm />}/>
 
         {/* <Route path="/sign-in" element={<SignInForm />}/> */}
       </Routes>
