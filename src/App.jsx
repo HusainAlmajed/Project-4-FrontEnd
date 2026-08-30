@@ -66,7 +66,6 @@ const App = () => {
   return (
     <div>
       <Nav />
-      <Dashboard />
       <h1>Welcome to the Warranty App</h1>
       <Routes>
         <Route path="/sign-up/customer" element={<CustomerSignUpForm />}/>
