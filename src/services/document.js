@@ -46,8 +46,27 @@ const show = async (documentId) => {
     }
 }
 
+const update = async (documentId , documentData) => {
+    try {
+        const res = await fetch (`${BASE_URL}/${documentId}` , {
+            method: 'PUT',
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+                'Content-type': 'application/json',
+            },
+            body: JSON.stringify(documentData),
+        })
+
+        const data = await res.json()
+        return data
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 export {
     create,
     index,
     show,
+    update,
 }
