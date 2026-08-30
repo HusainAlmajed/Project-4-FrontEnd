@@ -68,13 +68,14 @@ const App = () => {
   })
 
   setAgreements(updatedAgreements)
-  navigate("/dashboard")
+  navigate(`/agreements/${agreementId}`)
   }
 
 
   return (
     <div>
         <Nav user={user} setUser={setUser} />
+
       <Routes>
 
         <Route path="/" element={<h1>Welcome to the Warranty App</h1>} />
@@ -90,7 +91,7 @@ const App = () => {
 
         <Route path="/agreements" element={<AgreementForm handleAddAgreement={handleAddAgreement}/>} />
 
-        <Route path="/agreements/:agreementId" element={<AgreementDetails />} />
+        <Route path="/agreements/:agreementId" element={<AgreementDetails user={user} handleEditAgreement={handleUpdateAgreement} handleDeleteAgreement={handleDeleteAgreement} />} />
 
         <Route path="/agreements-list" element={<AgreementList agreements={agreements}/>} />
       </Routes>

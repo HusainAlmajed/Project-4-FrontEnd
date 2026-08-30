@@ -17,7 +17,7 @@ const Nav = (props) => {
                 <>
                     <Link to="/">Home</Link> {' | '}
                     <Link to="/dashboard">Dashboard</Link>{' | '}
-                    <Link to="/agreement">Add Agreement</Link>{' | '}
+                    <Link to="/agreements">Add Agreement</Link>{' | '}
                     <Link to="/agreements-list">Agreement List</Link>
                     <button className="nav-signout" onClick={handleSignOut}> Sign Out </button>
                 </>

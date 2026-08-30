@@ -134,6 +134,7 @@ const AgreementForm = (props) => {
                         name="description"
                         value={formData.description}
                         onChange={handleChange}
+                        placeholder="Enter a brief description of the agreement"
                     />
                 </label>
 
