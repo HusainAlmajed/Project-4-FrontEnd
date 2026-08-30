@@ -1,6 +1,7 @@
 import {Link} from "react-router"
 
 const AgreementList = (props) => {
+    
 
     return (
         <div>
@@ -15,6 +16,7 @@ const AgreementList = (props) => {
                 ))}
             </ul>
         </div>
+            
     )
 }
 
