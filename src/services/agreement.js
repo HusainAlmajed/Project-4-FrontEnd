@@ -25,7 +25,7 @@ const create = async (agreementData) => {
     }
 }
 
-const getAllAgreements = async () => {
+const index = async () => {
     try {
         const response = await fetch(BASE_URL, {
             method: 'GET',
@@ -42,22 +42,6 @@ const getAllAgreements = async () => {
     }
 }
 
-const getMyAgreements = async () => {
-    try {
-        const response = await fetch(`${BASE_URL}/my-agreements`, {
-            method: 'GET',
-            headers: getHeaders()
-        })
-        if (!response.ok) {
-            throw new Error('Failed to fetch my agreements')
-        }
-        const data = await response.json()
-        return data
-    } catch (error) {
-        console.error('Error fetching my agreements:', error)
-        throw error
-    }
-}
 
 const show = async (agreementId) => {
     try {
@@ -76,12 +60,12 @@ const show = async (agreementId) => {
     }
 }
 
-const update = async (agreementId, updatedData) => {
+const update = async (agreementId, agreementData) => {
     try {
         const response = await fetch(`${BASE_URL}/${agreementId}`, {
             method: 'PUT',
             headers: getHeaders(),
-            body: JSON.stringify(updatedData)
+            body: JSON.stringify(agreementData)
         })
         if (!response.ok) {
             throw new Error('Failed to update agreement')
@@ -110,4 +94,10 @@ const deleteAgreement = async (agreementId) => {
     }
 }
 
-export { create, getAllAgreements, getMyAgreements, show, update, deleteAgreement }
+export { 
+    create,
+    index,
+    show,
+    update,
+    deleteAgreement
+}
