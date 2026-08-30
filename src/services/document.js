@@ -34,7 +34,7 @@ const index = async () => {
 
 const show = async (documentId) => {
     try {
-        const res = await fetch (BASE_URL, {
+    const res = await fetch(`${BASE_URL}/${documentId}`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
             },
