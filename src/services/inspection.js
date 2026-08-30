@@ -46,8 +46,27 @@ const show = async (inspectionData) => {
     }
 }
 
+const update = async (inspectionId , inspectionData) => {
+    try {
+        const res = await fetch(`${BASE_URL}/${inspectionId}`, {
+            method: 'PUT',
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+                'Content-type': 'application/json',
+      },
+      body: JSON.stringify(inspectionData)
+    })
+
+    const data = await res.json()
+    return data
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 export {
     create,
     index,
     show,
+    update,
 }
