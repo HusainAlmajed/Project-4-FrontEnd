@@ -1,15 +1,35 @@
-import {Link} from 'react-router'
+import { Link, useNavigate } from 'react-router'
 
-const Nav = () => {
+
+const Nav = (props) => {
+
+    const navigate = useNavigate()
+
+    const handleSignOut = () => {
+        localStorage.removeItem('token')
+        props.setUser(null)
+        navigate('/')
+    }
 
     return (
         <nav>
-            <Link to="/">Home</Link> { '| ' }
-            <Link to="/dashboard">Dashboard</Link>{ '| ' }
-            <Link to="/sign-up/customer">Customer Sgin Up</Link>{ '| ' }
-            <Link to="/sign-up/owner">Owner Sgin Up</Link>
-            <Link to="/agreements">Add Agreement</Link>
-            <Link to="/agreements-list">Agreement List</Link>
+            {props.user ? (
+                <>
+                    <Link to="/">Home</Link> {' | '}
+                    <Link to="/dashboard">Dashboard</Link>{' | '}
+                    <Link to="/agreement">Add Agreement</Link>{' | '}
+                    <Link to="/agreements-list">Agreement List</Link>
+                    <button className="nav-signout" onClick={handleSignOut}> Sign Out </button>
+                </>
+
+            ) : (
+                <>
+                    <Link to="/sign-up/customer">Customer Sgin Up</Link>{'| '}
+                    <Link to="/sign-up/owner">Owner Sgin Up</Link>{'| '}
+                    <Link to="/sign-in">Sgin in</Link>
+                </>
+
+            )}
         </nav>
     )
 

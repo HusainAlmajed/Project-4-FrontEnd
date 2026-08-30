@@ -1,6 +1,6 @@
 import Nav from "./components/Nav"
-import CustomerSignUpForm from "./components/CustomerSignUp"
-import OwnerSignUpForm from "./components/OwnerSignUp"
+import CustomerSignUpForm from "./pages/CustomerSignUp.jsx"
+import OwnerSignUpForm from "./pages/OwnerSignUp.jsx"
 import './App.css'
 import { Routes, Route, useNavigate } from "react-router"
 import { useState, useEffect } from "react"
@@ -13,13 +13,20 @@ import AgreementList from "./pages/AgreementList"
 import AgreementDetails from "./pages/AgreementDetails"
 
 import * as agreementServices from "./services/agreement.js"
+import SignInForm from "./pages/SignIn.jsx"
 
 const getUserFromToken = () => {
   const token = localStorage.getItem("token")
 
   if (!token) return null
 
-  return JSON.parse(atob(token.split(".")[1])).payload
+  try {
+    const payload = JSON.parse(atob(token.split(".")[1]))
+    return payload.payload
+  } catch (error) {
+    localStorage.removeItem("token")
+    return null
+  }
 }
 
 const App = () => {
@@ -67,18 +74,19 @@ const App = () => {
 
   return (
     <div>
-      <Nav />
       <Routes>
 
         <Route path="/" element={<h1>Welcome to the Warranty App</h1>} />
 
-        <Route path="/sign-up/customer" element={<CustomerSignUpForm />}/>
+        <Nav user={user} setUser={setUser} />
 
-        <Route path="/sign-up/owner" element={<OwnerSignUpForm />}/>
+        <Route path="/sign-up/customer" element={<CustomerSignUpForm />} />
 
-        {/* <Route path="/sign-in" element={<SignInForm />}/> */}
+        <Route path="/sign-up/owner" element={<OwnerSignUpForm />} />
 
-        <Route path="/dashboard"element={<Dashboard agreements={agreements} />}/>
+        <Route path="/sign-in" element={<SignInForm setUser={setUser}/>} />
+
+        <Route path="/dashboard" element={<Dashboard agreements={agreements} />} />
 
         <Route path="/agreements" element={<AgreementForm handleAddAgreement={handleAddAgreement}/>} />
 
