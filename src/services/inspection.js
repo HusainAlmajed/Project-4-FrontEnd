@@ -32,7 +32,22 @@ const index = async () => {
     }
 }
 
+const show = async (inspectionData) => {
+    try {
+        const res = await fetch (`${BASE_URL}/${inspectionId}` , {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+    })
+        
+    return res.json()
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 export {
     create,
     index,
+    show,
 }
