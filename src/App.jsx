@@ -8,29 +8,65 @@ import { useState, useEffect } from "react"
 // import Landing from "./pages/Landing"
 import Dashboard from "./pages/Dashboard"
 import { useParams } from "react-router"
+import AgreementForm from "./pages/AgreementForm"
 
+import * as agreementServices from "./services/agreement.js"
 
 const getUserFromToken = () => {
-  const token = localStorage.getItem('token')
+  const token = localStorage.getItem("token")
+
   if (!token) return null
-  return JSON.parse(atob(token.split('.')[1])).payload
+
+  return JSON.parse(atob(token.split(".")[1])).payload
 }
 
 const App = () => {
+  const navigate = useNavigate()
 
   const [user, setUser] = useState(getUserFromToken())
+  const [agreements, setAgreements] = useState([])
+
+  useEffect(() => {
+    const fetchAgreements = async () => {
+      const agreementsData = await agreementServices.index()
+      setAgreements(agreementsData)
+    }
+
+    if (user) {
+      fetchAgreements()
+    }
+  }, [user])
+
+  const handleAddAgreement = async (agreementData) => {
+    const newAgreement = await agreementServices.create(agreementData)
+
+    setAgreements([newAgreement, ...agreements])
+
+    navigate("/dashboard")
+  }
+
+  const handleDeleteAgreement = async (agreementId) => {
+    await agreementServices.deleteAgreement(agreementId)
+    setAgreements(agreements.filter((agreement) => agreement._id !== agreementId))
+    navigate("/dashboard")
+  }
+
 
   return (
     <div>
       <Nav />
       <Dashboard />
-      {/* <h1>Welcome to the Blog App</h1> */}
+      <h1>Welcome to the Warranty App</h1>
       <Routes>
         <Route path="/sign-up/customer" element={<CustomerSignUpForm />}/>
 
         <Route path="/sign-up/owner" element={<OwnerSignUpForm />}/>
 
         {/* <Route path="/sign-in" element={<SignInForm />}/> */}
+
+        <Route path="/dashboard"element={<Dashboard agreements={agreements} />}/>
+
+        <Route path="/agreement" element={<AgreementForm handleAddAgreement={handleAddAgreement}/>} />
       </Routes>
     </div>
   )
