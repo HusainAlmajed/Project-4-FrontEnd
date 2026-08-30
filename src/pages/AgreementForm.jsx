@@ -19,6 +19,7 @@ const AgreementForm = (props) => {
     }
 
     const [formData, setFormData] = useState(initialState)
+    const [message, setMessage] = useState("")
 
     const handleChange = (e) => {
         setFormData({
@@ -40,6 +41,7 @@ const AgreementForm = (props) => {
             setFormData(initialState)
             navigate("/agreements-list")
         } catch (error) {
+            setMessage(error.message)
             console.error("Error submitting agreement form:", error)
         }
     }
@@ -182,6 +184,7 @@ const AgreementForm = (props) => {
                     {agreementId ? "Update Agreement" : "Create Agreement"}
                 </button>
             </form>
+            {message && <p>{message}</p>}
         </div>
     )
 }
