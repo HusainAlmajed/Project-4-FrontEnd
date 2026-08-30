@@ -1,9 +1,13 @@
 import Nav from "./components/Nav"
-import "./App.css"
+import CustomerSignUpForm from "./components/CustomerSignUp"
+import OwnerSignUpForm from "./components/OwnerSignUp"
+import './App.css'
 import { Routes, Route, useNavigate } from "react-router"
 import { useState, useEffect } from "react"
-
+// import SignInForm from "./pages/SignInForm"
+// import Landing from "./pages/Landing"
 import Dashboard from "./pages/Dashboard"
+import { useParams } from "react-router"
 import AgreementForm from "./pages/AgreementForm"
 
 import * as agreementServices from "./services/agreement.js"
@@ -51,7 +55,7 @@ const App = () => {
     const updatedAgreement = await agreementServices.update(agreementId, formData)
 
     const updatedAgreements = agreements.map((agreement) =>{
-      agreement._id === agreementId ? updatedAgreement : agreement
+      return agreement._id === agreementId ? updatedAgreement : agreement
   })
 
   setAgreements(updatedAgreements)
@@ -62,10 +66,15 @@ const App = () => {
   return (
     <div>
       <Nav />
-
+      <Dashboard />
       <h1>Welcome to the Warranty App</h1>
-
       <Routes>
+        <Route path="/sign-up/customer" element={<CustomerSignUpForm />}/>
+
+        <Route path="/sign-up/owner" element={<OwnerSignUpForm />}/>
+
+        {/* <Route path="/sign-in" element={<SignInForm />}/> */}
+
         <Route path="/dashboard"element={<Dashboard agreements={agreements} />}/>
 
         <Route path="/agreement" element={<AgreementForm handleAddAgreement={handleAddAgreement}/>} />
