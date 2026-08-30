@@ -1,11 +1,12 @@
 import Nav from "./components/Nav"
 // import SignUpForm from "./pages/SignUpForm"
 import './App.css'
-// import { Routes, Route, useNavigate } from "react-router"
+import { Routes, Route, useNavigate } from "react-router"
 // import { useState, useEffect } from "react"
 // import SignInForm from "./pages/SignInForm"
 // import Landing from "./pages/Landing"
 import Dashboard from "./pages/Dashboard"
+import AgreementForm from "./pages/AgreementForm"
 // import { useParams } from "react-router"
 
 
@@ -20,8 +21,11 @@ const App = () => {
   return (
     <div>
       <Nav />
-      <Dashboard />
       <h1>Welcome to the Blog App</h1>
+      <Routes>
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/agreement" element={<AgreementForm />} />
+      </Routes>
     </div>
   )
 }
