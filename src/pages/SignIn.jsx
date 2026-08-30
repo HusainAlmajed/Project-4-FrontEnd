@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { signIn } from "../services/authServices";
 
-const SignInForm = () => {
+const SignInForm = ({setUser}) => {
     const navigate = useNavigate()
 
     const initialState = {
@@ -26,7 +26,9 @@ const SignInForm = () => {
 
             localStorage.setItem("token", data.token)
 
-            setMessage("Signed in successfully!")
+            const user = JSON.parse(atob(data.token.split('.')[1])).payload
+
+            setUser(user)
 
             navigate("/dashboard")
         } catch (error) {

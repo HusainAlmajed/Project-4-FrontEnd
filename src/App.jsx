@@ -18,7 +18,13 @@ const getUserFromToken = () => {
 
   if (!token) return null
 
-  return JSON.parse(atob(token.split(".")[1])).payload
+  try {
+    const payload = JSON.parse(atob(token.split(".")[1]))
+    return payload.payload
+  } catch (error) {
+    localStorage.removeItem("token")
+    return null
+  }
 }
 
 const App = () => {
@@ -55,19 +61,19 @@ const App = () => {
 
   return (
     <div>
-      <Nav />
-      <Dashboard />
+      <Nav user={user} setUser={setUser} />
+      {/* <Dashboard /> */}
       <h1>Welcome to the Warranty App</h1>
       <Routes>
-        <Route path="/sign-up/customer" element={<CustomerSignUpForm />}/>
+        <Route path="/sign-up/customer" element={<CustomerSignUpForm />} />
 
-        <Route path="/sign-up/owner" element={<OwnerSignUpForm />}/>
+        <Route path="/sign-up/owner" element={<OwnerSignUpForm />} />
 
-        <Route path="/sign-in" element={<SignInForm />}/>
+        <Route path="/sign-in" element={<SignInForm setUser={setUser}/>} />
 
-        <Route path="/dashboard"element={<Dashboard agreements={agreements} />}/>
+        <Route path="/dashboard" element={<Dashboard agreements={agreements} />} />
 
-        <Route path="/agreement" element={<AgreementForm handleAddAgreement={handleAddAgreement}/>} />
+        <Route path="/agreement" element={<AgreementForm handleAddAgreement={handleAddAgreement} />} />
       </Routes>
     </div>
   )

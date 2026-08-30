@@ -70,6 +70,7 @@ const OwnerSignUpForm = (props) => {
 
             localStorage.setItem("token", data.token)
             setMessage("Owner account created successfully!")
+            navigate('/')
         } catch (error) {
             setMessage(error.message)
         }
