@@ -27,6 +27,12 @@ const AgreementDetails = () => {
     return (
         <div>
             <h1>Agreement Details</h1>
+
+            <p><strong>Type:</strong> {agreement.type}</p>
+            <p><strong>Start Date:</strong> {new Date(agreement.startDate).toLocaleDateString()}</p>
+            <p><strong>End Date:</strong> {new Date(agreement.endDate).toLocaleDateString()}</p>
+            <p><strong>Status:</strong> {agreement.status}</p>
+            <p><strong>Description:</strong> {agreement.description}</p>
         </div>
     )
 }
