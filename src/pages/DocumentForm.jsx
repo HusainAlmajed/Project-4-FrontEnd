@@ -1,6 +1,11 @@
 import { useState } from "react"
+import * as documentServices from "../services/document"
+import { useNavigate , useParams } from "react-router"
 
 const DocumentForm = () => {
+
+    const navigate = useNavigate()
+    const { agreementId } = useParams()
 
     const initialState = {
         title: '',
@@ -9,17 +14,31 @@ const DocumentForm = () => {
     }
 
     const [formData , setFormData] = useState(initialState)
+    const [message , setMessage] = useState('')
 
     const handleChange = (event) => {
         setFormData({...formData , [event.target.name]: event.target.value })
     }
 
+    const handleSubmit = async (event) => {
+        event.preventDefault()
+
+        try {
+            await documentServices.create({
+                ...formData,
+                agreement: agreementId
+            })
+            navigate(`/agreements/${agreementId}/documents`)
+        } catch (error) {
+            setMessage(error.message)
+        }
+    }
 
     return (
         <div>
         <h1>Add Document</h1>
 
-        <form>
+        <form onSubmit={handleSubmit}>
             <label>
           Document Title:
           <input
@@ -67,6 +86,7 @@ const DocumentForm = () => {
 
         <button type="submit">Add Document</button>
         </form>
+        {message && <p>{message}</p>}
         </div>
     )
 
