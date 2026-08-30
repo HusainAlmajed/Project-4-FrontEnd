@@ -10,6 +10,7 @@ import Dashboard from "./pages/Dashboard"
 import { useParams } from "react-router"
 import AgreementForm from "./pages/AgreementForm"
 import AgreementList from "./pages/AgreementList"
+import AgreementDetails from "./pages/AgreementDetails"
 
 import * as agreementServices from "./services/agreement.js"
 
@@ -67,8 +68,10 @@ const App = () => {
   return (
     <div>
       <Nav />
-      <h1>Welcome to the Warranty App</h1>
       <Routes>
+
+        <Route path="/" element={<h1>Welcome to the Warranty App</h1>} />
+
         <Route path="/sign-up/customer" element={<CustomerSignUpForm />}/>
 
         <Route path="/sign-up/owner" element={<OwnerSignUpForm />}/>
@@ -78,6 +81,8 @@ const App = () => {
         <Route path="/dashboard"element={<Dashboard agreements={agreements} />}/>
 
         <Route path="/agreements" element={<AgreementForm handleAddAgreement={handleAddAgreement}/>} />
+
+        <Route path="/agreements/:agreementId" element={<AgreementDetails />} />
 
         <Route path="/agreements-list" element={<AgreementList agreements={agreements}/>} />
       </Routes>
