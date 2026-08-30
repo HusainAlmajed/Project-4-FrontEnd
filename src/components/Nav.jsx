@@ -8,7 +8,8 @@ const Nav = () => {
             <Link to="/dashboard">Dashboard</Link>{ '| ' }
             <Link to="/sign-up/customer">Customer Sgin Up</Link>{ '| ' }
             <Link to="/sign-up/owner">Owner Sgin Up</Link>
-            <Link to="/agreement">Add Agreement</Link>
+            <Link to="/agreements">Add Agreement</Link>
+            <Link to="/agreements-list">Agreement List</Link>
         </nav>
     )
 

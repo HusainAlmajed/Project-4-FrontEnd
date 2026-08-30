@@ -9,6 +9,7 @@ import { useState, useEffect } from "react"
 import Dashboard from "./pages/Dashboard"
 import { useParams } from "react-router"
 import AgreementForm from "./pages/AgreementForm"
+import AgreementList from "./pages/AgreementList"
 
 import * as agreementServices from "./services/agreement.js"
 
@@ -76,7 +77,9 @@ const App = () => {
 
         <Route path="/dashboard"element={<Dashboard agreements={agreements} />}/>
 
-        <Route path="/agreement" element={<AgreementForm handleAddAgreement={handleAddAgreement}/>} />
+        <Route path="/agreements" element={<AgreementForm handleAddAgreement={handleAddAgreement}/>} />
+
+        <Route path="/agreements-list" element={<AgreementList agreements={agreements}/>} />
       </Routes>
     </div>
   )
