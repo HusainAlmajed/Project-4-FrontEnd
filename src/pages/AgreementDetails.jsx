@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from "react"
-import { useParams } from "react-router"
+import { Link, useParams } from "react-router"
 import * as agreementServices from "../services/agreement.js"
 
 const AgreementDetails = (props) => {
@@ -44,6 +44,7 @@ const AgreementDetails = (props) => {
              <>
             <button onClick={() => props.handleEditAgreement(agreement._id)}>Edit</button>
             <button onClick={() => props.handleDeleteAgreement(agreement._id)}>Delete</button>
+            <Link to={`/agreements/${agreement._id}/documents`}>Add Documents</Link>
             </>
             
             )}
