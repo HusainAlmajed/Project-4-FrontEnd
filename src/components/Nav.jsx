@@ -18,9 +18,17 @@ const Nav = (props) => {
                     <Link to="/">Home</Link> {' | '}
                     <Link to="/dashboard">Dashboard</Link>{' | '}
                     <Link to="/agreements">Add Agreement</Link>{' | '}
+                {props.user.role === "owner" ? (
+                    <>
                     <Link to="/agreements-list">Agreement List</Link>
+                    </>
+                    
+                ):(
+                    <>
                     <Link to="/agreements-customer">Customer Agreement</Link>
-                    <button className="nav-signout" onClick={handleSignOut}> Sign Out </button>
+                    </>
+                )}
+                <button className="nav-signout" onClick={handleSignOut}> Sign Out </button>
                 </>
 
             ) : (
