@@ -14,12 +14,9 @@ const DashboardCostumer = ({ agreements = [] }) => {
     const expiredAgreements = agreements.filter(
         (agreement) => agreement.status === "expired"
     )
-
     return (
-        <div >
-
-          
-            <header>
+        <div>
+             <header>
                 <div>
                     <h1>Customer Dashboard</h1>
                 </div>
@@ -47,9 +44,24 @@ const DashboardCostumer = ({ agreements = [] }) => {
                     <h2>{agreements.length}</h2>
                 </div>
 
+                <section>
+                    <h2>My Agreements</h2>
+                    {agreements.length === 0 ? (
+                        <p>No agreements found.</p>
+                    ) : (
+                        <ul>
+                            {agreements.map((agreement) => (
+                                <li key={agreement._id}>
+                                    <Link to={`/agreements/${agreement._id}`}>
+                                        {agreement.type} - {agreement.description}- {agreement.status}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    )}
+                </section>
+
             </section>
-
-
         </div>
     )
 }
