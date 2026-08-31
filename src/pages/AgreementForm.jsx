@@ -205,8 +205,7 @@ const AgreementForm = (props) => {
                 </label>
 
                 <br />
-                {props.user && props.user.role === "owner" && (
-                    <>
+               
                 <h3>Customer Information</h3>
                     <label>
                         Customer Phone:
@@ -217,13 +216,9 @@ const AgreementForm = (props) => {
                             placeholder="Enter the customer's phone number"
                         />
                     </label>
-                    </>
-                )}
-            {!agreementId && (
-                <>
-                <h3>Document Information</h3>
+                    
 
-                    <label>
+                <label>
                     Document Title:
                     <input
                         type="text"
@@ -263,9 +258,7 @@ const AgreementForm = (props) => {
                         placeholder="https://example.com/document.pdf"
                         required/>
                     </label>
-
-                            </>
-                    )}
+                  
 
                     <br/>
 

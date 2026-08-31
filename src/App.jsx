@@ -6,7 +6,7 @@ import { Routes, Route, useNavigate } from "react-router"
 import { useState, useEffect } from "react"
 // import SignInForm from "./pages/SignInForm"
 // import Landing from "./pages/Landing"
-import Dashboard from "./pages/Dashboard"
+import DashboardCostumer from "./pages/DashboardCostumer.jsx"
 import { useParams } from "react-router"
 import AgreementForm from "./pages/AgreementForm"
 import AgreementList from "./pages/AgreementList"
@@ -91,7 +91,7 @@ const App = () => {
 
         <Route path="/sign-in" element={<SignInForm setUser={setUser}/>} />
 
-        <Route path="/dashboard" element={<Dashboard agreements={agreements} />} />
+        <Route path="/dashboard" element={<DashboardCostumer agreements={agreements} />} />
 
         <Route path="/agreements" element={<AgreementForm handleAddAgreement={handleAddAgreement} />} />
 

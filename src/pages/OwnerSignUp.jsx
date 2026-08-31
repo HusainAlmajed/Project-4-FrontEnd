@@ -3,7 +3,7 @@ import { ownerSignUp } from "../services/authServices";
 import { useNavigate } from "react-router";
 
 
-const OwnerSignUpForm = ( setUser ) => {
+const OwnerSignUpForm = ( {setUser } ) => {
     const navigate = useNavigate()
 
     const initialState = {
