@@ -9,7 +9,7 @@ const customerSignUp = async (formData) => {
         body: JSON.stringify(formData),
     })
 
-    const data = await response.json ()
+    const data = await response.json()
 
     if (!response.ok) {
         throw new Error(data.err || "Somthing went wrong")
@@ -27,7 +27,7 @@ const ownerSignUp = async (formData) => {
         body: JSON.stringify(formData),
     })
 
-    const data = await response.json ()
+    const data = await response.json()
 
     if (!response.ok) {
         throw new Error(data.err || "Somthing went wrong")
@@ -54,8 +54,36 @@ const signIn = async (formData) => {
     return data;
 }
 
+const updateProfile = async (req, res) => {
+    try {
+        const user = await User.findByIdAndUpdate(
+            req.user._id,
+            {
+                username: req.body.username,
+                email: req.body.email,
+                phone: req.body.phone,
+            },
+            { new: true }
+        )
+
+        if (!user) {
+            return res.status(404).json({
+                err: "User not found"
+            })
+        }
+
+        res.status(200).json(user)
+
+    } catch (error) {
+        res.status(400).json({
+            err: error.message
+        })
+    }
+}
+
 export {
     customerSignUp,
     ownerSignUp,
-    signIn
+    signIn,
+    updateProfile
 }
