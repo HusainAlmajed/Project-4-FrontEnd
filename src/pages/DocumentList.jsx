@@ -39,14 +39,13 @@ const DocumentList = () => {
     return (
         <div>
             <h1>Document List</h1>
-            <Link to={`/agreements/${agreementId}/documents/new`}>Add Document</Link>
+            {/* <Link to={`/agreements/${agreementId}/documents/new`}>Add Document</Link> */}
 
             {documents.length === 0 ? (<p>No documents added yet</p>) : (
                 <ul>
                     {documents.map((document) => (
                         <li key={document._id}>
                             <p>{document.title}</p>
-                            <p>{document.documentType}</p>
                             <a href="{document.url}">View document</a>
                             
                             <Link to={`/agreements/${agreementId}/documents/${document._id}/edit`}>Edit</Link>
