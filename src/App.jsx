@@ -93,7 +93,7 @@ const App = () => {
 
         <Route path="/dashboard" element={<DashboardCostumer agreements={agreements} />} />
 
-        <Route path="/agreements" element={<AgreementForm handleAddAgreement={handleAddAgreement} />} />
+        <Route path="/agreements" element={<AgreementForm handleAddAgreement={handleAddAgreement} user={user} />} />
 
         <Route path="/agreements/:agreementId" element={<AgreementDetails user={user} handleEditAgreement={handleUpdateAgreement} handleDeleteAgreement={handleDeleteAgreement} />} />
 

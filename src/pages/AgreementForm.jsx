@@ -205,9 +205,10 @@ const AgreementForm = (props) => {
                 </label>
 
                 <br />
-               
+               {props.user && props.user.role === "owner" && (
+                <>
                 <h3>Customer Information</h3>
-                    <label>
+                <label>
                         Customer Phone:
                         <input
                             name="customerPhone"
@@ -217,6 +218,9 @@ const AgreementForm = (props) => {
                         />
                     </label>
                     
+                <br />
+                </>
+                )}                    
 
                 <label>
                     Document Title:
