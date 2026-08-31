@@ -38,6 +38,7 @@ const AgreementDetails = (props) => {
             <h2>Asset Information</h2>
             <p><strong>Name:</strong> {agreement.asset.name}</p>
             <p><strong>Type:</strong> {agreement.asset.assetType}</p>
+            <Link to={`/agreements/${agreement._id}/documents`}>View Documents</Link>
             {props.user && 
             props.user.role === "owner" &&
              String(props.user._id) === String(agreement.owner._id) && (
@@ -45,7 +46,6 @@ const AgreementDetails = (props) => {
              
             <button onClick={() => props.handleEditAgreement(agreement._id)}>Edit</button>
             <button onClick={() => props.handleDeleteAgreement(agreement._id)}>Delete</button>
-            <Link to={`/agreements/${agreement._id}/documents`}>View Documents</Link>
             </>
             
             )}
