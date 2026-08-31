@@ -16,8 +16,40 @@ const DashboardCostumer = ({ agreements = [] }) => {
     )
 
     return (
-        <div>
-            <h1>Customer Dashboard</h1>
+        <div >
+
+          
+            <header>
+                <div>
+                    <h1>Customer Dashboard</h1>
+                </div>
+            </header>
+
+            <section>
+
+                <div>
+                    <h3>Active Warranties</h3>
+                    <h2>{activeAgreements.length}</h2>
+                </div>
+
+                <div>
+                    <h3>Expiring Soon</h3>
+                    <h2>{expiringAgreements.length}</h2>
+                </div>
+
+                <div>
+                    <h3>Expired</h3>
+                    <h2>{expiredAgreements.length}</h2>
+                </div>
+
+                <div>
+                    <h3>Total Warranties</h3>
+                    <h2>{agreements.length}</h2>
+                </div>
+
+            </section>
+
+
         </div>
     )
 }
