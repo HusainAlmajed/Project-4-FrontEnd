@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import { useNavigate, useParams } from "react-router"
 import * as agreementServices from "../services/agreement.js"
 import * as documentServices from "../services/document"
+import * as inspectionServices from "../services/inspection"
 
 const AgreementForm = (props) => {
     const navigate = useNavigate()
@@ -28,6 +29,15 @@ const AgreementForm = (props) => {
         url: '',
     }
 
+    const inspectionInitialState = {
+        inspectionType: '',
+        images: '',
+        notes: '',
+        date: '',
+    }
+
+    const [inspectionData , setInspectionData] = useState(inspectionInitialState)
+    
     const [documentData , setDocumentData] = useState(documentInitialState)
     const [formData, setFormData] = useState(initialState)
     const [message, setMessage] = useState("")
@@ -62,6 +72,13 @@ const AgreementForm = (props) => {
         })
     }
 
+    const handleInspectionChange = (event) => {
+        setInspectionData({
+            ...inspectionData,
+            [event.target.name]: event.target.value,
+        })
+    }
+
     const handleChange = (e) => {
         setFormData({
             ...formData,
@@ -91,10 +108,18 @@ const AgreementForm = (props) => {
                     ...documentData,
                     agreement: newAgreement._id,
             })
+
+            if (formData.assetType === 'property') {
+                await inspectionServices.create({
+                    ...inspectionData,
+                    agreement: newAgreement._id,
+                })
+            }
         }
 
             setFormData(initialState)
             setDocumentData(documentInitialState)
+            setInspectionData(inspectionInitialState)
             navigate("/agreements-list")
         } catch (error) {
             setMessage(error.message)
@@ -220,6 +245,66 @@ const AgreementForm = (props) => {
                         <option value="other">Other</option>
                     </select>
                 </label>
+
+                {!agreementId &&
+                props.user?.role === "owner" &&
+                formData.assetType === "property" && (
+                    <>
+                    <h3>Property Inspection</h3>
+
+                    <label>
+                        Inspection Type:
+                        <select
+                        name="inspectionType"
+                        value={inspectionData.inspectionType}
+                        onChange={handleInspectionChange}
+                        required
+                        >
+                        <option value="">Select type</option>
+                        <option value="before">Before move-in</option>
+                        <option value="after">After move-out</option>
+                        </select>
+                    </label>
+
+                    <br />
+
+                    <label>
+                        Property Image URL:
+                        <input
+                        type="url"
+                        name="images"
+                        value={inspectionData.images}
+                        onChange={handleInspectionChange}
+                        placeholder="https://example.com/property-image.jpg"
+                        required/>
+                    </label>
+
+                    <br />
+
+                    <label>
+                        Notes:
+                        <textarea
+                        name="notes"
+                        value={inspectionData.notes}
+                        onChange={handleInspectionChange}
+                        placeholder="Describe the property condition"/>
+                    </label>
+
+                    <br />
+
+                    <label>
+                        Inspection Date:
+                        <input
+                        type="date"
+                        name="date"
+                        value={inspectionData.date}
+                        onChange={handleInspectionChange}
+                        required/>
+                    </label>
+
+                    <br />
+                    </>
+                )}
 
                 <br />
                {props.user && props.user.role === "owner" && (
