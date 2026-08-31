@@ -15,8 +15,10 @@ import DocumentList from "./pages/DocumentList.jsx"
 import DocumentForm from "./pages/DocumentForm.jsx"
 import CustomerAgreement from "./pages/CostumerAgreement.jsx"
 
+
 import * as agreementServices from "./services/agreement.js"
 import SignInForm from "./pages/SignIn.jsx"
+import UserProfile from "./pages/UserProfile.jsx"
 
 const getUserFromToken = () => {
   const token = localStorage.getItem("token")
@@ -106,6 +108,8 @@ const App = () => {
         <Route path="/agreements/:agreementId/documents/:documentId/edit" element={<DocumentForm />} />
 
         <Route path="/agreements/:agreementId/documents" element={<DocumentList />} />
+        
+        <Route path="/user-profile" element={<UserProfile user={user}  />} />
 
       </Routes>
     </div>
