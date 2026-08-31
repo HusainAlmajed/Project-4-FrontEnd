@@ -100,6 +100,8 @@ const deleteAgreement = async (agreementId) => {
     }
 }
 
+
+
 export {
     index,
     create,
