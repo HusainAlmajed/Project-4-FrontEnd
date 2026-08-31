@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "react-router"
 
-const DashboardCostumer = ({ agreements = [] }) => {
+const DashboardCostumer = ({ agreements = [], user }) => {
 
     const activeAgreements = agreements.filter(
         (agreement) => agreement.status === "active"
@@ -19,6 +19,8 @@ const DashboardCostumer = ({ agreements = [] }) => {
              <header>
                 <div>
                     <h1>Customer Dashboard</h1>
+                    <h3>Welcome, {user.username}</h3>
+
                 </div>
             </header>
 

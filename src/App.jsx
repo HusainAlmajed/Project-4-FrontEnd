@@ -93,7 +93,7 @@ const App = () => {
 
         <Route path="/sign-in" element={<SignInForm setUser={setUser}/>} />
         {user && user.role === "customer" && (
-          <Route path="/dashboard" element={<DashboardCostumer agreements={agreements} />} />
+          <Route path="/dashboard" element={<DashboardCostumer agreements={agreements} user={user} />} />
         )}
         <Route path="/agreements" element={<AgreementForm handleAddAgreement={handleAddAgreement} user={user} />} />
 
