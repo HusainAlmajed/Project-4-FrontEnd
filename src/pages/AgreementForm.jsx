@@ -13,6 +13,9 @@ const AgreementForm = (props) => {
         status: "active",
         description: "",
 
+        // customer information
+        customerPhone: "",
+
         // asset information
         assetName: "",
         assetType: "",
@@ -178,6 +181,19 @@ const AgreementForm = (props) => {
                         <option value="property">Property</option>
                         <option value="other">Other</option>
                     </select>
+                </label>
+
+                <br />
+                <h3>Customer Information</h3>
+
+                <label>
+                    Customer Phone:
+                    <input
+                        name="customerPhone"
+                        value={formData.customerPhone}
+                        onChange={handleChange}
+                        placeholder="Enter the customer's phone number"
+                    />
                 </label>
 
                 <button type="submit">
