@@ -40,18 +40,78 @@ const UserProfile = (props) => {
         navigate('/')
     }
     return (
-        <div>
-            <h1>{props.user.username} Profile</h1>
-            <img src={props.user.profileImage} alt="Profile" />
+        <div className="profile">
 
-            <p>Username: {props.user.username}</p>
-            <p>Email: {props.user.email}</p>
-            <p>Phone: {props.user.phone}</p>
-            {props.user.role === "owner" && (
-                <>
-                    <p>Buisness Information</p>
-                </>
+            <h1>My Profile</h1>
+
+            {!isEditing ? (
+                <div>
+                    <img
+                        src={props.user.profileImage}
+                        alt="Profile"
+                    />
+
+                    <p>
+                        <strong>Username:</strong>{" "}
+                        {props.user.username}
+                    </p>
+
+                    <p>
+                        <strong>Email:</strong>{" "}
+                        {props.user.email}
+                    </p>
+
+                    <p>
+                        <strong>Phone:</strong>{" "}
+                        {props.user.phone}
+                    </p>
+
+                    <button onClick={handleEdite}>
+                        Edit Profile
+                    </button>
+
+                    <button onClick={handleSignOut}>
+                        Sign Out
+                    </button>
+                </div>
+            ) : (
+                <form>
+
+                    <input
+                        type="text"
+                        name="username"
+                        value={formData.username}
+                        onChange={handleChange}
+                    />
+
+                    <input
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                    />
+
+                    <input
+                        type="tel"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleChange}
+                    />
+
+                    <button type="submit">
+                        Save Changes
+                    </button>
+
+                    <button
+                        type="button"
+                        onClick={handleCancel}
+                    >
+                        Cancel
+                    </button>
+
+                </form>
             )}
+
         </div>
     )
 }
