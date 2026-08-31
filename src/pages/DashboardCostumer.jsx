@@ -1,4 +1,19 @@
-const DashboardCostumer = () => {
+import React from "react"
+import { Link } from "react-router"
+
+const DashboardCostumer = ({ agreements = [] }) => {
+
+    const activeAgreements = agreements.filter(
+        (agreement) => agreement.status === "active"
+    )
+
+    const expiringAgreements = agreements.filter(
+        (agreement) => agreement.status === "expiring soon"
+    )
+
+    const expiredAgreements = agreements.filter(
+        (agreement) => agreement.status === "expired"
+    )
 
     return (
         <div>
@@ -8,4 +23,3 @@ const DashboardCostumer = () => {
 }
 
 export default DashboardCostumer
-
