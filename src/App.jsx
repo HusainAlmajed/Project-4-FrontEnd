@@ -92,9 +92,9 @@ const App = () => {
         <Route path="/sign-up/owner" element={<OwnerSignUpForm setUser={setUser}/>} />
 
         <Route path="/sign-in" element={<SignInForm setUser={setUser}/>} />
-
-        <Route path="/dashboard" element={<DashboardCostumer agreements={agreements} />} />
-
+        {user && user.role === "customer" && (
+          <Route path="/dashboard" element={<DashboardCostumer agreements={agreements} />} />
+        )}
         <Route path="/agreements" element={<AgreementForm handleAddAgreement={handleAddAgreement} user={user} />} />
 
         <Route path="/agreements/:agreementId" element={<AgreementDetails user={user} handleEditAgreement={handleUpdateAgreement} handleDeleteAgreement={handleDeleteAgreement} />} />
