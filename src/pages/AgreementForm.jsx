@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { useNavigate, useParams } from "react-router"
 import * as agreementServices from "../services/agreement.js"
+import * as documentServices from "../services/document"
 
 const AgreementForm = (props) => {
     const navigate = useNavigate()
@@ -21,8 +22,22 @@ const AgreementForm = (props) => {
         assetType: "",
     }
 
+    const documentInitialState = {
+        title: '',
+        documentType: 'contract',
+        url: '',
+    }
+
+    const [documentData , setDocumentData] = useState(documentInitialState)
     const [formData, setFormData] = useState(initialState)
     const [message, setMessage] = useState("")
+
+    const handleDocumentChange = (event) => {
+        setDocumentData({
+            ...documentData,
+            [event.target.name]: event.target.value,
+        })
+    }
 
     const handleChange = (e) => {
         setFormData({
@@ -38,10 +53,16 @@ const AgreementForm = (props) => {
             if (agreementId) {
                 await props.handleUpdateAgreement(agreementId, formData)
             } else {
-                await props.handleAddAgreement(formData)
-            }
+                const newAgreement = await props.handleAddAgreement(formData)
+
+                await documentServices.create({
+                    ...documentData,
+                    agreement: newAgreement._id,
+            })
+        }
 
             setFormData(initialState)
+            setDocumentData(documentInitialState)
             navigate("/agreements-list")
         } catch (error) {
             setMessage(error.message)
@@ -195,6 +216,55 @@ const AgreementForm = (props) => {
                         placeholder="Enter the customer's phone number"
                     />
                 </label>
+            {!agreementId && (
+                <>
+                <h3>Document Information</h3>
+
+                    <label>
+                    Document Title:
+                    <input
+                        type="text"
+                        name="title"
+                        value={documentData.title}
+                        onChange={handleDocumentChange}
+                        placeholder="e.g. iPhone receipt"
+                        required/>
+                    </label>
+
+                    <br />
+
+                    <label>
+                    Document Type:
+                    <select
+                        name="documentType"
+                        value={documentData.documentType}
+                        onChange={handleDocumentChange}
+                    >
+                        <option value="contract">Contract</option>
+                        <option value="receipt">Receipt</option>
+                        <option value="warranty">Warranty</option>
+                        <option value="insurance">Insurance</option>
+                        <option value="other">Other</option>
+                    </select>
+                    </label>
+
+                    <br />
+
+                    <label>
+                    Document URL:
+                    <input
+                        type="url"
+                        name="url"
+                        value={documentData.url}
+                        onChange={handleDocumentChange}
+                        placeholder="https://example.com/document.pdf"
+                        required/>
+                    </label>
+
+                            </>
+                    )}
+
+                    <br/>
 
                 <button type="submit">
                     {agreementId ? "Update Agreement" : "Create Agreement"}

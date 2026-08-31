@@ -53,8 +53,9 @@ const App = () => {
     const newAgreement = await agreementServices.create(agreementData)
 
     setAgreements([newAgreement, ...agreements])
+    return newAgreement
 
-    navigate("/agreements-list")
+    // navigate("/agreements-list")
   }
 
   const handleDeleteAgreement = async (agreementId) => {
