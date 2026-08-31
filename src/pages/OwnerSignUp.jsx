@@ -131,12 +131,20 @@ const OwnerSignUpForm = (setUser) => {
                 onChange={handleChange}
             />
 
-            <input
-                name="type"
-                placeholder="Business Type"
-                value={formData.type}
-                onChange={handleChange}
-            />
+             <label>
+                    Business Type:
+                    <select
+                        name="type"
+                        value={formData.type}
+                        onChange={handleChange}
+                        required
+                    >
+                        <option value="">Select Type</option>
+                        <option value="shop">Shop</option>
+                        <option value="property">Property</option>
+                        <option value="insurance">Insurance</option>
+                    </select>
+                </label>
 
             <button type="submit">
                 Create Account
