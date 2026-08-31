@@ -13,6 +13,7 @@ import AgreementList from "./pages/AgreementList"
 import AgreementDetails from "./pages/AgreementDetails"
 import DocumentList from "./pages/DocumentList.jsx"
 import DocumentForm from "./pages/DocumentForm.jsx"
+import CustomerAgreement from "./pages/CostumerAgreement.jsx"
 
 import * as agreementServices from "./services/agreement.js"
 import SignInForm from "./pages/SignIn.jsx"
@@ -96,6 +97,8 @@ const App = () => {
         <Route path="/agreements/:agreementId" element={<AgreementDetails user={user} handleEditAgreement={handleUpdateAgreement} handleDeleteAgreement={handleDeleteAgreement} />} />
 
         <Route path="/agreements-list" element={<AgreementList agreements={agreements} user={user} />} />
+
+        <Route path="/agreements-customer" element={<CustomerAgreement agreements={agreements} user={user} />} />
 
         <Route path="/agreements/:agreementId/documents/new" element={<DocumentForm />} />
 
