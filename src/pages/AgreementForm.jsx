@@ -32,6 +32,29 @@ const AgreementForm = (props) => {
     const [formData, setFormData] = useState(initialState)
     const [message, setMessage] = useState("")
 
+    const calculateStatus = (endDate) => {
+    if (!endDate) return "active"
+
+    const today = new Date()
+    const end = new Date(endDate)
+
+    today.setHours(0, 0, 0, 0)
+    end.setHours(0, 0, 0, 0)
+
+    if (end < today) {
+        return "expired"
+    }
+
+    const differenceInTime = end.getTime() - today.getTime()
+    const differenceInDays = differenceInTime / (1000 * 60 * 60 * 24)
+
+    if (differenceInDays <= 30) {
+        return "expiring soon"
+    }
+
+    return "active"
+}
+
     const handleDocumentChange = (event) => {
         setDocumentData({
             ...documentData,
@@ -49,11 +72,20 @@ const AgreementForm = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
 
+        
+
         try {
+
+            const status = calculateStatus(formData.endDate)
+            const agreementData = {
+                ...formData,
+                status: status,
+            }
+
             if (agreementId) {
-                await props.handleUpdateAgreement(agreementId, formData)
+                await props.handleUpdateAgreement(agreementId, agreementData)
             } else {
-                const newAgreement = await props.handleAddAgreement(formData)
+                const newAgreement = await props.handleAddAgreement(agreementData)
 
                 await documentServices.create({
                     ...documentData,
@@ -141,21 +173,6 @@ const AgreementForm = (props) => {
                         onChange={handleChange}
                         required
                     />
-                </label>
-
-                <br />
-
-                <label>
-                    Status:
-                    <select
-                        name="status"
-                        value={formData.status}
-                        onChange={handleChange}
-                    >
-                        <option value="active">Active</option>
-                        <option value="expiring soon">Expiring Soon</option>
-                        <option value="expired">Expired</option>
-                    </select>
                 </label>
 
                 <br />

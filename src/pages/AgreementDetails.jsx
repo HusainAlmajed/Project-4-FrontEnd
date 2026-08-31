@@ -27,6 +27,8 @@ const AgreementDetails = (props) => {
         return <h2>Loading agreement...</h2>
     }
 
+    
+
     return (
         <div>
             <h1>Agreement Details</h1>
