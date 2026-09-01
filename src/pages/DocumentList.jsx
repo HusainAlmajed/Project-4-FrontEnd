@@ -12,9 +12,6 @@ const DocumentList = () => {
         const fetchDocuments = async () => {
             const allDocuments = await documentServices.index()
 
-            console.log("All documents:", allDocuments)
-            console.log("Current agreement ID:", agreementId)
-
             const agreementDocuments = allDocuments.filter((document) => {
                 const documentAgreementId = document.agreement?._id || document.agreement
                 return String(documentAgreementId) === String(agreementId)

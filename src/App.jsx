@@ -44,21 +44,27 @@ const App = () => {
 
   useEffect(() => {
 
-    const fetchUser = async () => {
+    const fetchData = async () => {
+
         try {
+
             const currentUser = getUserFromToken()
 
             if (currentUser) {
+
                 const userData = await userServices.getUser(currentUser._id)
                 setUser(userData)
+
+                const agreementData = await agreementServices.index()
+                setAgreements(agreementData)
             }
 
         } catch (error) {
-            console.log("Failed to fetch user:", error)
+            console.log("Failed to fetch data:", error)
         }
     }
 
-    fetchUser()
+    fetchData()
 
 }, [])
 
