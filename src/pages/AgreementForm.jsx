@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router"
 import * as agreementServices from "../services/agreement.js"
 import * as documentServices from "../services/document"
 import * as inspectionServices from "../services/inspection"
+import UploadWidget from "../components/UploadWidget.jsx"
 
 const AgreementForm = (props) => {
     const navigate = useNavigate()
@@ -31,39 +32,39 @@ const AgreementForm = (props) => {
 
     const inspectionInitialState = {
         inspectionType: '',
-        images: '',
+        images: [],
         notes: '',
         date: '',
     }
 
-    const [inspectionData , setInspectionData] = useState(inspectionInitialState)
-    
-    const [documentData , setDocumentData] = useState(documentInitialState)
+    const [inspectionData, setInspectionData] = useState(inspectionInitialState)
+
+    const [documentData, setDocumentData] = useState(documentInitialState)
     const [formData, setFormData] = useState(initialState)
     const [message, setMessage] = useState("")
 
     const calculateStatus = (endDate) => {
-    if (!endDate) return "active"
+        if (!endDate) return "active"
 
-    const today = new Date()
-    const end = new Date(endDate)
+        const today = new Date()
+        const end = new Date(endDate)
 
-    today.setHours(0, 0, 0, 0)
-    end.setHours(0, 0, 0, 0)
+        today.setHours(0, 0, 0, 0)
+        end.setHours(0, 0, 0, 0)
 
-    if (end < today) {
-        return "expired"
+        if (end < today) {
+            return "expired"
+        }
+
+        const differenceInTime = end.getTime() - today.getTime()
+        const differenceInDays = differenceInTime / (1000 * 60 * 60 * 24)
+
+        if (differenceInDays <= 30) {
+            return "expiring soon"
+        }
+
+        return "active"
     }
-
-    const differenceInTime = end.getTime() - today.getTime()
-    const differenceInDays = differenceInTime / (1000 * 60 * 60 * 24)
-
-    if (differenceInDays <= 30) {
-        return "expiring soon"
-    }
-
-    return "active"
-}
 
     const handleDocumentChange = (event) => {
         setDocumentData({
@@ -79,6 +80,13 @@ const AgreementForm = (props) => {
         })
     }
 
+    const handleInspectionImageUpload = (imageUrl) => {
+        setInspectionData({
+            ...inspectionData,
+            images: [...inspectionData.images, imageUrl]
+        })
+    }
+
     const handleChange = (e) => {
         setFormData({
             ...formData,
@@ -89,7 +97,7 @@ const AgreementForm = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        
+
 
         try {
 
@@ -107,15 +115,15 @@ const AgreementForm = (props) => {
                 await documentServices.create({
                     ...documentData,
                     agreement: newAgreement._id,
-            })
-
-            if (formData.assetType === 'property') {
-                await inspectionServices.create({
-                    ...inspectionData,
-                    agreement: newAgreement._id,
                 })
+
+                if (formData.assetType === 'property') {
+                    await inspectionServices.create({
+                        ...inspectionData,
+                        agreement: newAgreement._id,
+                    })
+                }
             }
-        }
 
             setFormData(initialState)
             setDocumentData(documentInitialState)
@@ -134,14 +142,14 @@ const AgreementForm = (props) => {
 
                 setFormData({
                     type: agreementData.type,
-                    startDate: agreementData.startDate? agreementData.startDate.split("T")[0] : "",
+                    startDate: agreementData.startDate ? agreementData.startDate.split("T")[0] : "",
                     endDate: agreementData.endDate ? agreementData.endDate.split("T")[0] : "",
-                    status: agreementData.status ,
-                    description: agreementData.description ,
+                    status: agreementData.status,
+                    description: agreementData.description,
                     assetName: agreementData.asset.name,
                     assetType: agreementData.asset?.type,
 
-                        customerPhone: agreementData.customer.phone,
+                    customerPhone: agreementData.customer.phone,
 
                 })
 
@@ -251,86 +259,97 @@ const AgreementForm = (props) => {
                     </select>
                 </label>
 
-                  {props.user && props.user.role === "owner" && (
-                <>
-                <h3>Customer Information</h3>
-                <label>
-                        Customer Phone:
-                        <input
-                            name="customerPhone"
-                            value={formData.customerPhone}
-                            onChange={handleChange}
-                            placeholder="Enter the customer's phone number"
-                        />
-                    </label>
-                    
-                <br />
-                </>
-                )}         
-
-                {!agreementId &&
-                props.user?.role === "owner" &&
-                formData.assetType === "property" && (
+                {props.user && props.user.role === "owner" && (
                     <>
+                        <h3>Customer Information</h3>
+                        <label>
+                            Customer Phone:
+                            <input
+                                name="customerPhone"
+                                value={formData.customerPhone}
+                                onChange={handleChange}
+                                placeholder="Enter the customer's phone number"
+                            />
+                        </label>
 
-                    <h3>Property Inspection</h3>
-
-                    <label>
-                        Inspection Type:
-                        <select
-                        name="inspectionType"
-                        value={inspectionData.inspectionType}
-                        onChange={handleInspectionChange}
-                        required
-                        >
-                        <option value="">Select type</option>
-                        <option value="before">Before move-in</option>
-                        <option value="after">After move-out</option>
-                        </select>
-                    </label>
-
-                    <br />
-
-                    <label>
-                        Property Image URL:
-                        <input
-                        type="url"
-                        name="images"
-                        value={inspectionData.images}
-                        onChange={handleInspectionChange}
-                        placeholder="https://example.com/property-image.jpg"
-                        required/>
-                    </label>
-
-                    <br />
-
-                    <label>
-                        Notes:
-                        <textarea
-                        name="notes"
-                        value={inspectionData.notes}
-                        onChange={handleInspectionChange}
-                        placeholder="Describe the property condition"/>
-                    </label>
-
-                    <br />
-
-                    <label>
-                        Inspection Date:
-                        <input
-                        type="date"
-                        name="date"
-                        value={inspectionData.date}
-                        onChange={handleInspectionChange}
-                        required/>
-                    </label>
-
-                    <br />
+                        <br />
                     </>
                 )}
 
+                {!agreementId &&
+                    props.user?.role === "owner" &&
+                    formData.assetType === "property" && (
+                        <>
+
+                            <h3>Property Inspection</h3>
+
+                            <label>
+                                Inspection Type:
+                                <select
+                                    name="inspectionType"
+                                    value={inspectionData.inspectionType}
+                                    onChange={handleInspectionChange}
+                                    required
+                                >
+                                    <option value="">Select type</option>
+                                    <option value="before">Before move-in</option>
+                                    <option value="after">After move-out</option>
+                                </select>
+                            </label>
+
+                            <br />
+
+                            <label>
+                                Property Images:
+                            </label>
+
+                            <br />
+
+                            <UploadWidget
+                                setImage={handleInspectionImageUpload}
+                            />
+
+                            <div>
+                                {inspectionData.images.map((image, index) => (
+                                    <div key={index}>
+                                        <img
+                                            src={image}
+                                            alt={`Property inspection ${index + 1}`}
+                                            width="200"
+                                        />
+                                    </div>
+                                ))}
+                            </div>
+
+                            <br />
+
+                            <label>
+                                Notes:
+                                <textarea
+                                    name="notes"
+                                    value={inspectionData.notes}
+                                    onChange={handleInspectionChange}
+                                    placeholder="Describe the property condition" />
+                            </label>
+
+                            <br />
+
+                            <label>
+                                Inspection Date:
+                                <input
+                                    type="date"
+                                    name="date"
+                                    value={inspectionData.date}
+                                    onChange={handleInspectionChange}
+                                    required />
+                            </label>
+
+                            <br />
+                        </>
+                    )}
+
                 <br />
-                        
+
 
                 <label>
                     Document Title:
@@ -340,12 +359,12 @@ const AgreementForm = (props) => {
                         value={documentData.title}
                         onChange={handleDocumentChange}
                         placeholder="e.g. iPhone receipt"
-                        required/>
-                    </label>
+                        required />
+                </label>
 
-                    <br />
+                <br />
 
-                    <label>
+                <label>
                     Document Type:
                     <select
                         name="documentType"
@@ -358,11 +377,11 @@ const AgreementForm = (props) => {
                         <option value="insurance">Insurance</option>
                         <option value="other">Other</option>
                     </select>
-                    </label>
+                </label>
 
-                    <br />
+                <br />
 
-                    <label>
+                <label>
                     Document URL:
                     <input
                         type="url"
@@ -370,11 +389,11 @@ const AgreementForm = (props) => {
                         value={documentData.url}
                         onChange={handleDocumentChange}
                         placeholder="https://example.com/document.pdf"
-                        required/>
-                    </label>
-                  
+                        required />
+                </label>
 
-                    <br/>
+
+                <br />
 
                 <button type="submit">
                     {agreementId ? "Update Agreement" : "Create Agreement"}

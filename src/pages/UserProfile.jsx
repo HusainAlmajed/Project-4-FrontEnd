@@ -136,9 +136,9 @@ const UserProfile = (props) => {
 
                     <UploadWidget setImage={handleImageUpload} />
 
-                    {formData.profileImage && (
+                    {props.user.profileImage && (
                         <img
-                            src={formData.profileImage}
+                            src={props.user.profileImage}
                             alt="Profile Preview"
                             width="150"
                         />

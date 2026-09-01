@@ -2,6 +2,7 @@ import React from "react"
 import { Link } from "react-router"
 import { useEffect, useState } from "react"
 
+
 const DashboardCostumer = ({ agreements = [], user }) => {
 
     const [loading, setLoading] = React.useState(true)

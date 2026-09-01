@@ -53,6 +53,24 @@ const signIn = async (formData) => {
 
     return data;
 }
+
+const getUser = async (userId) => {
+
+    const response = await fetch(`${BASE_URL}/users/${userId}`, {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`
+        }
+    })
+
+    const data = await response.json()
+
+    if (!response.ok) {
+        throw new Error(data.err || "Something went wrong")
+    }
+
+    return data
+}
+
 const updateUser = async (userId, formData) => {
 
     const response = await fetch(`${BASE_URL}/users/${userId}`, {
@@ -77,5 +95,6 @@ export {
     customerSignUp,
     ownerSignUp,
     signIn,
-    updateUser
+    updateUser,
+    getUser
 }
