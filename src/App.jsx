@@ -42,15 +42,24 @@ const App = () => {
   const [agreements, setAgreements] = useState([])
 
   useEffect(() => {
-    const fetchAgreements = async () => {
-      const agreementsData = await agreementServices.index()
-      setAgreements(agreementsData)
+
+    const fetchUser = async () => {
+        try {
+            const currentUser = getUserFromToken()
+
+            if (currentUser) {
+                const userData = await userServices.getUser(currentUser._id)
+                setUser(userData)
+            }
+
+        } catch (error) {
+            console.log("Failed to fetch user:", error)
+        }
     }
 
-    if (user) {
-      fetchAgreements()
-    }
-  }, [user])
+    fetchUser()
+
+}, [])
 
   const handleAddAgreement = async (agreementData) => {
     const newAgreement = await agreementServices.create(agreementData)
