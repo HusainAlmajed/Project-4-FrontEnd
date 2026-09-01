@@ -134,13 +134,18 @@ const AgreementForm = (props) => {
 
                 setFormData({
                     type: agreementData.type,
-                    startDate: agreementData.startDate ,
-                    endDate: agreementData.endDate,
+                    startDate: agreementData.startDate? agreementData.startDate.split("T")[0] : "",
+                    endDate: agreementData.endDate ? agreementData.endDate.split("T")[0] : "",
                     status: agreementData.status ,
                     description: agreementData.description ,
-                    name: agreementData.asset.name,
-                    assetType: agreementData.asset.type,
+                    assetName: agreementData.asset.name,
+                    assetType: agreementData.asset?.type,
+
+                        customerPhone: agreementData.customer.phone,
+
                 })
+
+
             } catch (error) {
                 console.error("Error fetching agreement:", error)
             }
@@ -246,10 +251,28 @@ const AgreementForm = (props) => {
                     </select>
                 </label>
 
+                  {props.user && props.user.role === "owner" && (
+                <>
+                <h3>Customer Information</h3>
+                <label>
+                        Customer Phone:
+                        <input
+                            name="customerPhone"
+                            value={formData.customerPhone}
+                            onChange={handleChange}
+                            placeholder="Enter the customer's phone number"
+                        />
+                    </label>
+                    
+                <br />
+                </>
+                )}         
+
                 {!agreementId &&
                 props.user?.role === "owner" &&
                 formData.assetType === "property" && (
                     <>
+
                     <h3>Property Inspection</h3>
 
                     <label>
@@ -307,22 +330,7 @@ const AgreementForm = (props) => {
                 )}
 
                 <br />
-               {props.user && props.user.role === "owner" && (
-                <>
-                <h3>Customer Information</h3>
-                <label>
-                        Customer Phone:
-                        <input
-                            name="customerPhone"
-                            value={formData.customerPhone}
-                            onChange={handleChange}
-                            placeholder="Enter the customer's phone number"
-                        />
-                    </label>
-                    
-                <br />
-                </>
-                )}                    
+                        
 
                 <label>
                     Document Title:

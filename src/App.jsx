@@ -95,7 +95,10 @@ const App = () => {
         {user && user.role === "customer" && (
           <Route path="/dashboard" element={<DashboardCostumer agreements={agreements} user={user} />} />
         )}
-        <Route path="/agreements" element={<AgreementForm handleAddAgreement={handleAddAgreement} user={user} />} />
+        <Route path="/agreements" element={<AgreementForm handleAddAgreement={handleAddAgreement} user={user}  />} />
+
+
+        <Route path="/agreements/:agreementId/edit" element={<AgreementForm user={user} handleUpdateAgreement={handleUpdateAgreement} handleAddAgreement={handleAddAgreement} />} />
 
         <Route path="/agreements/:agreementId" element={<AgreementDetails user={user} handleEditAgreement={handleUpdateAgreement} handleDeleteAgreement={handleDeleteAgreement} />} />
 

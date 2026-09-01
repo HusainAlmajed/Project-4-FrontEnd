@@ -46,7 +46,7 @@ const AgreementDetails = (props) => {
              String(props.user._id) === String(agreement.owner._id) && (
              <>
              
-            <button onClick={() => props.handleEditAgreement(agreement._id)}>Edit</button>
+            <Link to={`/agreements/${agreement._id}/edit`}>Edit</Link>
             <button onClick={() => props.handleDeleteAgreement(agreement._id)}>Delete</button>
             </>
             
