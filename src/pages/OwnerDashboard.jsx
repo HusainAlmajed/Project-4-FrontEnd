@@ -5,6 +5,7 @@ import { useState } from "react"
 const OwnerDashboard = ({ agreements = [], user }) => {
 
     const [loading, setLoading] = useState(true)
+    const [search, setSearch] = useState("")
 
     useEffect(() => {
         if (agreements.length > 0) {
@@ -25,6 +26,13 @@ const OwnerDashboard = ({ agreements = [], user }) => {
 
     const expiredAgreements = agreements.filter(
         (agreement) => agreement.status === "expired"
+    )
+
+    const filteredAgreements = agreements.filter(
+        (agreement) => {
+            const customerPhone = agreement.customer?.phone || ""
+            return customerPhone.toLowerCase().includes(search.toLowerCase())
+        }
     )
 
     return (
@@ -59,6 +67,12 @@ const OwnerDashboard = ({ agreements = [], user }) => {
 
                 <section>
     <h2>All Agreements</h2>
+    <input
+        type="text"
+        placeholder="Search by customer phone"
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+    />
 
     {agreements.length === 0 ? (
         <p>No agreements found.</p>
@@ -73,7 +87,7 @@ const OwnerDashboard = ({ agreements = [], user }) => {
             </thead>
 
             <tbody>
-                {agreements.map((agreement) => (
+                {filteredAgreements.map((agreement) => (
                     <tr key={agreement._id}>
 
                         <td>
