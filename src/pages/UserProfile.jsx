@@ -1,10 +1,12 @@
 import { useState } from "react"
 import { useNavigate } from "react-router"
+import UploadWidget from "../components/UploadWidget"
 
 
 const UserProfile = (props) => {
 
     const navegate = useNavigate()
+    // const [profileImage, setProfileImage] = useState("")
 
     const [isEditing, setIsEditing] = useState(false)
 
@@ -12,12 +14,20 @@ const UserProfile = (props) => {
 
         username: props.user.username,
         email: props.user.email,
-        phone: props.user.phone
+        phone: props.user.phone,
+        profileImage: props.user.profileImage || ""
 
     })
 
     const handleChange = (event) => {
         setFormData({ ...formData, [event.target.name]: event.target.value })
+    }
+
+    const handleImageUpload = (imageUrl) => {
+        setFormData({
+            ...formData,
+            profileImage: imageUrl
+        })
     }
 
     const handleEdite = () => {
@@ -34,6 +44,26 @@ const UserProfile = (props) => {
         setIsEditing(false)
     }
 
+    const handleSubmit = async (event) => {
+        event.preventDefault()
+
+        try {
+
+            const updatedUser = await props.updateUser(
+                props.user._id,
+                formData
+            )
+
+
+            props.setUser(updatedUser)
+
+            setIsEditing(false)
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     const handleSignOut = () => {
         localStorage.removeItem('token')
         props.setUser(null)
@@ -46,10 +76,13 @@ const UserProfile = (props) => {
 
             {!isEditing ? (
                 <div>
-                    <img
-                        src={props.user.profileImage}
-                        alt="Profile"
-                    />
+                    {props.user.profileImage && (
+                        <img
+                            src={props.user.profileImage}
+                            alt="Profile"
+                            width="150"
+                        />
+                    )}
 
                     <p>
                         <strong>Username:</strong>{" "}
@@ -75,8 +108,8 @@ const UserProfile = (props) => {
                     </button>
                 </div>
             ) : (
-                <form>
-
+                <form onSubmit={handleSubmit}>
+                    <label htmlFor="username">Username</label>
                     <input
                         type="text"
                         name="username"
@@ -84,6 +117,7 @@ const UserProfile = (props) => {
                         onChange={handleChange}
                     />
 
+                    <label htmlFor="email">Email</label>
                     <input
                         type="email"
                         name="email"
@@ -91,12 +125,24 @@ const UserProfile = (props) => {
                         onChange={handleChange}
                     />
 
+                    <label htmlFor="phone">Phone</label>
                     <input
                         type="tel"
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
                     />
+                    <label >Profile Image</label>
+
+                    <UploadWidget setImage={handleImageUpload} />
+
+                    {formData.profileImage && (
+                        <img
+                            src={formData.profileImage}
+                            alt="Profile Preview"
+                            width="150"
+                        />
+                    )}
 
                     <button type="submit">
                         Save Changes

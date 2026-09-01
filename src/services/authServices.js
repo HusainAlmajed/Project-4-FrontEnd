@@ -53,37 +53,29 @@ const signIn = async (formData) => {
 
     return data;
 }
+const updateUser = async (userId, formData) => {
 
-const updateProfile = async (req, res) => {
-    try {
-        const user = await User.findByIdAndUpdate(
-            req.user._id,
-            {
-                username: req.body.username,
-                email: req.body.email,
-                phone: req.body.phone,
-            },
-            { new: true }
-        )
+    const response = await fetch(`${BASE_URL}/users/${userId}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`
+        },
+        body: JSON.stringify(formData)
+    })
 
-        if (!user) {
-            return res.status(404).json({
-                err: "User not found"
-            })
-        }
+    const data = await response.json()
 
-        res.status(200).json(user)
-
-    } catch (error) {
-        res.status(400).json({
-            err: error.message
-        })
+    if (!response.ok) {
+        throw new Error(data.err || "Something went wrong")
     }
+
+    return data
 }
 
 export {
     customerSignUp,
     ownerSignUp,
     signIn,
-    updateProfile
+    updateUser
 }

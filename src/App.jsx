@@ -1,6 +1,7 @@
 import Nav from "./components/Nav"
 import CustomerSignUpForm from "./pages/CustomerSignUp.jsx"
 import OwnerSignUpForm from "./pages/OwnerSignUp.jsx"
+import * as userServices from "../src/services/authServices.js"
 import './App.css'
 import { Routes, Route, useNavigate } from "react-router"
 import { useState, useEffect } from "react"
@@ -77,6 +78,12 @@ const App = () => {
   navigate(`/agreements/${agreementId}`)
   }
 
+  const updateUser = async (userId, formData) => {
+    const updatedUser = await userServices.updateUser(userId, formData)
+
+    return updatedUser
+}
+
 
   return (
     <div>
@@ -112,7 +119,7 @@ const App = () => {
 
         <Route path="/agreements/:agreementId/documents" element={<DocumentList />} />
         
-        <Route path="/user-profile" element={<UserProfile user={user}  />} />
+        <Route path="/user-profile" element={<UserProfile user={user} setUser={setUser} updateUser={updateUser} />} />
 
       </Routes>
     </div>
