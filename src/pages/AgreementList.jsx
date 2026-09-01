@@ -2,6 +2,7 @@ import {Link} from "react-router"
 
 const AgreementList = (props) => {
 
+
     if (!props.agreements) {
          return <p>Loading agreements...</p> 
         }
@@ -9,7 +10,6 @@ const AgreementList = (props) => {
     const ownerAgreements = props.agreements.filter( 
         (agreement) => props.user?.role === "owner" &&
          String(agreement.owner?._id) === String(props.user._id) )
-    
 
     return (
         <div>
