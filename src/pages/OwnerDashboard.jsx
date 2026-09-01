@@ -35,6 +35,10 @@ const OwnerDashboard = ({ agreements = [], user }) => {
         }
     )
 
+    if (loading) {
+        return <h2>Loading Dashboard...</h2>
+    }
+
     return (
         <div>
              <header>
@@ -81,8 +85,9 @@ const OwnerDashboard = ({ agreements = [], user }) => {
             <thead>
                 <tr>
                     <th>Customer</th>
-                    <th>Status</th>
                     <th>Customer Phone</th>
+                    <th>Asset Type</th>
+                    <th>Status</th>
                 </tr>
             </thead>
 
@@ -95,12 +100,18 @@ const OwnerDashboard = ({ agreements = [], user }) => {
                         </td>
 
                         <td>
-                            {agreement.status}
+                            {agreement.customer.phone }
                         </td>
 
                         <td>
-                            {agreement.customer.phone }
+                            {agreement.asset.name}
                         </td>
+
+                        <td>
+                            {agreement.status}
+                        </td>
+
+
 
                         <td>
                             <Link to={`/agreements/${agreement._id}`}>

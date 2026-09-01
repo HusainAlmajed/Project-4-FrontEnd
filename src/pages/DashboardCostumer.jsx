@@ -23,6 +23,11 @@ const DashboardCostumer = ({ agreements = [], user }) => {
     const expiredAgreements = agreements.filter(
         (agreement) => agreement.status === "expired"
     )
+
+    if (loading) {
+        return <h2>Loading Dashboard...</h2>
+    }
+    
     return (
         <div>
              <header>
