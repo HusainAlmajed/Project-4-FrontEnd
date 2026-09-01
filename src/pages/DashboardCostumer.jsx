@@ -2,7 +2,6 @@ import React from "react"
 import { Link } from "react-router"
 import { useEffect, useState } from "react"
 
-
 const DashboardCostumer = ({ agreements = [], user }) => {
 
     const [loading, setLoading] = React.useState(true)
@@ -28,7 +27,6 @@ const DashboardCostumer = ({ agreements = [], user }) => {
     if (loading) {
         return <h2>Loading Dashboard...</h2>
     }
-    
     return (
         <div>
              <header>
