@@ -3,6 +3,14 @@ import { Link } from "react-router"
 
 const DashboardCostumer = ({ agreements = [], user }) => {
 
+    const [loading, setLoading] = React.useState(true)
+
+    useEffect(() => {
+        if (agreements.length > 0) {
+            setLoading(false)
+        }
+    }, [agreements])
+
     const activeAgreements = agreements.filter(
         (agreement) => agreement.status === "active"
     )
