@@ -1,6 +1,7 @@
 import React from "react"
 import { Link } from "react-router"
 import { useEffect, useState } from "react"
+import "../styles/customerDashboard.css"
 
 const DashboardCostumer = ({ agreements = [], user }) => {
 
@@ -28,55 +29,143 @@ const DashboardCostumer = ({ agreements = [], user }) => {
         return <h2>Loading Dashboard...</h2>
     }
     return (
-        <div>
-             <header>
-                <div>
-                    <h1>Customer Dashboard</h1>
-                    <h3>Welcome, {user.username}</h3>
+        <div className="customer-dashboard">
 
+            {/* ================= HEADER ================= */}
+
+            <header className="dashboard-header">
+
+                <div>
+                    <p className="dashboard-label">
+                        CUSTOMER DASHBOARD
+                    </p>
+
+                    <h1>Welcome, {user.username}</h1>
+
+                    <p className="dashboard-subtitle">
+                        Keep track of your warranties and agreements.
+                    </p>
                 </div>
+
             </header>
 
-            <section>
 
-                <div>
-                    <h3>Active Warranties</h3>
-                    <h2>{activeAgreements.length}</h2>
+            {/* ================= STATISTICS ================= */}
+
+            <section className="dashboard-stats">
+
+                <div className="stat-card">
+                    <div className="stat-card-content">
+                        <h3>Active Warranties</h3>
+                        <h2>{activeAgreements.length}</h2>
+                    </div>
                 </div>
 
-                <div>
-                    <h3>Expiring Soon</h3>
-                    <h2>{expiringAgreements.length}</h2>
+
+                <div className="stat-card">
+                    <div className="stat-card-content">
+                        <h3>Expiring Soon</h3>
+                        <h2>{expiringAgreements.length}</h2>
+                    </div>
                 </div>
 
-                <div>
-                    <h3>Expired</h3>
-                    <h2>{expiredAgreements.length}</h2>
+
+                <div className="stat-card">
+                    <div className="stat-card-content">
+                        <h3>Expired</h3>
+                        <h2>{expiredAgreements.length}</h2>
+                    </div>
                 </div>
 
-                <div>
-                    <h3>Total Warranties</h3>
-                    <h2>{agreements.length}</h2>
-                </div>
 
-                <section>
-                    <h2>My Agreements</h2>
-                    {agreements.length === 0 ? (
-                        <p>No agreements found.</p>
-                    ) : (
-                        <ul>
-                            {agreements.map((agreement) => (
-                                <li key={agreement._id}>
-                                    <Link to={`/agreements/${agreement._id}`}>
-                                        {agreement.type} - {agreement.description}- {agreement.status}
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
-                    )}
-                </section>
+                <div className="stat-card">
+                    <div className="stat-card-content">
+                        <h3>Total Warranties</h3>
+                        <h2>{agreements.length}</h2>
+                    </div>
+                </div>
 
             </section>
+
+
+            {/* ================= AGREEMENTS ================= */}
+
+            <section className="agreements-section">
+
+                <div className="section-header">
+
+                    <div>
+                        <h2>My Agreements</h2>
+
+                        <p>
+                            View and manage your agreements.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                {agreements.length === 0 ? (
+
+                    <div className="empty-agreements">
+
+                        <h3>No agreements found</h3>
+
+                        <p>
+                            You don't have any agreements yet.
+                        </p>
+
+                    </div>
+
+                ) : (
+
+                    <div className="agreements-list">
+
+                        {agreements.map((agreement) => (
+
+                            <Link
+                                key={agreement._id}
+                                to={`/agreements/${agreement._id}`}
+                                className="agreement-card"
+                            >
+
+                                <div className="agreement-info">
+
+                                    <h3>
+                                        {agreement.type}
+                                    </h3>
+
+                                    <p>
+                                        {agreement.description}
+                                    </p>
+
+                                </div>
+
+
+                                <div className="agreement-status">
+
+                                    <span
+                                        className={`status ${agreement.status?.toLowerCase()}`}
+                                    >
+                                        {agreement.status}
+                                    </span>
+
+                                    <span className="agreement-arrow">
+                                        →
+                                    </span>
+
+                                </div>
+
+                            </Link>
+
+                        ))}
+
+                    </div>
+
+                )}
+
+            </section>
+
         </div>
     )
 }

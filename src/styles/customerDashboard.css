@@ -1,0 +1,412 @@
+/* =========================
+   CUSTOMER DASHBOARD
+========================= */
+
+.customer-dashboard {
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding: 50px 30px 70px;
+
+    animation: dashboardFadeIn 0.5s ease;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.dashboard-header {
+    margin-bottom: 40px;
+}
+
+.dashboard-label {
+    margin: 0 0 8px;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+
+    color: #6b7280;
+}
+
+.dashboard-header h1 {
+    margin: 0;
+
+    font-size: 34px;
+    font-weight: 700;
+
+    color: #111827;
+}
+
+.dashboard-subtitle {
+    margin: 10px 0 0;
+
+    color: #6b7280;
+
+    font-size: 15px;
+}
+
+
+/* =========================
+   STATISTICS
+========================= */
+
+.dashboard-stats {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 18px;
+
+    margin-bottom: 45px;
+}
+
+.stat-card {
+    position: relative;
+
+    padding: 24px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.04);
+
+    overflow: hidden;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.stat-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 3px;
+
+    background: #111827;
+
+    transform: scaleX(0);
+
+    transform-origin: left;
+
+    transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 12px 28px rgba(0, 0, 0, 0.08);
+}
+
+.stat-card:hover::before {
+    transform: scaleX(1);
+}
+
+.stat-card-content h3 {
+    margin: 0 0 12px;
+
+    color: #6b7280;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.stat-card-content h2 {
+    margin: 0;
+
+    color: #111827;
+
+    font-size: 32px;
+    font-weight: 700;
+}
+
+
+/* =========================
+   AGREEMENTS SECTION
+========================= */
+
+.agreements-section {
+    margin-top: 10px;
+}
+
+.section-header {
+    margin-bottom: 20px;
+}
+
+.section-header h2 {
+    margin: 0;
+
+    color: #111827;
+
+    font-size: 23px;
+}
+
+.section-header p {
+    margin: 6px 0 0;
+
+    color: #6b7280;
+
+    font-size: 14px;
+}
+
+
+/* =========================
+   AGREEMENT LIST
+========================= */
+
+.agreements-list {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+}
+
+.agreement-card {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 20px 22px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 12px;
+
+    text-decoration: none;
+
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.03);
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.agreement-card:hover {
+    transform: translateX(5px);
+
+    border-color: #cbd5e1;
+
+    box-shadow:
+        0 8px 22px rgba(0, 0, 0, 0.07);
+}
+
+
+/* =========================
+   AGREEMENT INFO
+========================= */
+
+.agreement-info {
+    min-width: 0;
+}
+
+.agreement-info h3 {
+    margin: 0 0 6px;
+
+    color: #111827;
+
+    font-size: 16px;
+
+    text-transform: capitalize;
+}
+
+.agreement-info p {
+    margin: 0;
+
+    color: #6b7280;
+
+    font-size: 13px;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    max-width: 600px;
+}
+
+
+/* =========================
+   STATUS
+========================= */
+
+.agreement-status {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    flex-shrink: 0;
+}
+
+.status {
+    padding: 6px 11px;
+
+    border-radius: 20px;
+
+    background: #f3f4f6;
+
+    color: #374151;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    text-transform: capitalize;
+}
+
+.status.active {
+    background: #ecfdf5;
+    color: #047857;
+}
+
+.status.expired {
+    background: #fef2f2;
+    color: #b91c1c;
+}
+
+.status.pending {
+    background: #fffbeb;
+    color: #b45309;
+}
+
+.agreement-arrow {
+    color: #9ca3af;
+
+    font-size: 20px;
+
+    transition:
+        transform 0.2s ease,
+        color 0.2s ease;
+}
+
+.agreement-card:hover .agreement-arrow {
+    color: #111827;
+
+    transform: translateX(4px);
+}
+
+
+/* =========================
+   EMPTY STATE
+========================= */
+
+.empty-agreements {
+    padding: 55px 20px;
+
+    text-align: center;
+
+    background: #ffffff;
+
+    border: 1px dashed #d1d5db;
+
+    border-radius: 14px;
+}
+
+.empty-agreements h3 {
+    margin: 0 0 7px;
+
+    color: #374151;
+
+    font-size: 17px;
+}
+
+.empty-agreements p {
+    margin: 0;
+
+    color: #9ca3af;
+
+    font-size: 14px;
+}
+
+
+/* =========================
+   ANIMATION
+========================= */
+
+@keyframes dashboardFadeIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+
+    .dashboard-stats {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .customer-dashboard {
+        padding: 35px 18px 50px;
+    }
+
+    .dashboard-header h1 {
+        font-size: 27px;
+    }
+
+    .dashboard-stats {
+        grid-template-columns: 1fr;
+
+        gap: 12px;
+    }
+
+    .agreement-card {
+        padding: 17px;
+
+        align-items: flex-start;
+    }
+
+    .agreement-status {
+        flex-direction: column;
+
+        gap: 8px;
+    }
+
+    .agreement-info p {
+        max-width: 180px;
+    }
+
+}
