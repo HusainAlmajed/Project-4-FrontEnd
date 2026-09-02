@@ -84,10 +84,10 @@ const AgreementForm = (props) => {
     }
 
     const handleInspectionImageUpload = (imageUrl) => {
-        setInspectionData({
-            ...inspectionData,
-            images: [...inspectionData.images, imageUrl]
-        })
+        setInspectionData((prev) => ({
+            ...prev,
+            images: [...prev.images, imageUrl],
+        }))
     }
 
     const handleChange = (e) => {
