@@ -25,7 +25,16 @@ const AgreementDetails = (props) => {
     }, [agreementId])
 
     if (!agreement) {
-        return <h2>Loading agreement...</h2>
+        return (
+    <div
+        className="loading-screen"
+        role="status"
+        aria-live="polite"
+    >
+        <div className="loading-spinner"></div>
+        <p>Loading agreement...</p>
+    </div>
+)
     }
 
 
