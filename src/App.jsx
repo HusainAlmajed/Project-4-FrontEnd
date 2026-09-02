@@ -160,6 +160,7 @@ const App = () => {
         
         <Route path="/user-profile" element={<UserProfile user={user} setUser={setUser} updateUser={updateUser} />} />
 
+
       </Routes>
     </div>
   )

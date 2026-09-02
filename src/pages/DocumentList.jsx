@@ -10,17 +10,21 @@ const DocumentList = () => {
 
     useEffect(() => {
         const fetchDocuments = async () => {
-            const allDocuments = await documentServices.index()
+            try {
+                if (!agreementId) {
+                    console.error("Agreement ID is missing")
+                    return
+                }
+        
 
-            const agreementDocuments = allDocuments.filter((document) => {
-                const documentAgreementId = document.agreement?._id || document.agreement
-                return String(documentAgreementId) === String(agreementId)
-            })
-
-            setDocuments(agreementDocuments)
-            setLoading(false)
-        }
-        fetchDocuments()
+        const documentData = await documentServices.index(agreementId)
+        setDocuments(documentData)
+        setLoading(false)
+    } catch (error) {
+        console.error("Error fetching documents:", error)
+    }
+}
+ fetchDocuments()
     }, [agreementId])
 
     const handleDeleteDocument = async (documentId) => {
@@ -35,7 +39,7 @@ const DocumentList = () => {
 
     return (
         <div>
-            <h1>Document List</h1>
+            <h1>Document details</h1>
             {/* <Link to={`/agreements/${agreementId}/documents/new`}>Add Document</Link> */}
 
             {documents.length === 0 ? (<p>No documents added yet</p>) : (
@@ -43,10 +47,7 @@ const DocumentList = () => {
                     {documents.map((document) => (
                         <li key={document._id}>
                             <p>{document.title}</p>
-                            <a href={document.url} target="_blank">View document</a>
                             
-                            <Link to={`/agreements/${agreementId}/documents/${document._id}/edit`}>Edit</Link>
-                            <button onClick={() => handleDeleteDocument(document._id)}>Delete</button>
                         </li>
                     ))}
                 </ul>
