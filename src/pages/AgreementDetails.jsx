@@ -40,6 +40,22 @@ const AgreementDetails = (props) => {
             <h2>Asset Information</h2>
             <p><strong>Name:</strong> {agreement.asset.name}</p>
             <p><strong>Type:</strong> {agreement.asset.assetType}</p>
+            
+            {props.user && props.user.role === "customer" && String(props.user._id) === String(agreement.owner._id) ? (
+                <>
+                <h2>Business Information</h2>
+                <p><strong>Name:</strong> {agreement.business.name}</p>
+            </>
+            ) : null}
+
+            {props.user && props.user.role === "owner" && String(props.user._id) === String(agreement.owner._id) ? (
+                <>
+                <h2>Customer Information</h2>
+                <p><strong>Name:</strong> {agreement.customer.username}</p>
+                <p><strong>Email:</strong> {agreement.customer.email}</p>
+                <p><strong>Phone:</strong> {agreement.customer.phone}</p>
+                </>
+            ) : null}
             <Link to={`/agreements/${agreement._id}/documents`}>View Documents</Link>
             {props.user && 
             props.user.role === "owner" &&
