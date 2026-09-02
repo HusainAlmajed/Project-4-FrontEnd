@@ -1,20 +1,26 @@
 import { useEffect, useState } from "react"
 import * as adminServices from "../services/admin"
+import * as businessServices from "../services/business"
 
 const AdminDashboard = () => {
 
     const [users, setUsers] = useState([])
+    const [businesses, setBusinesses] = useState([])
     const [message, setMessage] = useState("")
 
+
+    // Fetch users and businesses
     useEffect(() => {
 
-        const fetchUsers = async () => {
+        const fetchData = async () => {
 
             try {
 
-                const data = await adminServices.getUsers()
+                const usersData = await adminServices.getUsers()
+                setUsers(usersData)
 
-                setUsers(data)
+                const businessesData = await businessServices.getBusinesses()
+                setBusinesses(businessesData)
 
             } catch (error) {
 
@@ -23,10 +29,12 @@ const AdminDashboard = () => {
             }
         }
 
-        fetchUsers()
+        fetchData()
 
     }, [])
 
+
+    // Change user role
     const handleRoleChange = async (userId, role) => {
 
         try {
@@ -49,6 +57,8 @@ const AdminDashboard = () => {
         }
     }
 
+
+    // Delete user
     const handleDelete = async (userId) => {
 
         try {
@@ -66,12 +76,37 @@ const AdminDashboard = () => {
         }
     }
 
+
+    // Delete business
+    const handleDeleteBusiness = async (businessId) => {
+
+        try {
+
+            await businessServices.deleteBusiness(businessId)
+
+            setBusinesses(
+                businesses.filter(
+                    (business) => business._id !== businessId
+                )
+            )
+
+        } catch (error) {
+
+            setMessage(error.message)
+
+        }
+    }
+
+
     return (
         <div>
 
             <h1>Admin Dashboard</h1>
 
             {message && <p>{message}</p>}
+
+
+            {/* ================= USERS ================= */}
 
             <h2>Users</h2>
 
@@ -140,6 +175,74 @@ const AdminDashboard = () => {
                                 <button
                                     onClick={() =>
                                         handleDelete(user._id)
+                                    }
+                                >
+                                    Delete
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+                    ))}
+
+                </tbody>
+
+            </table>
+
+
+            {/* ================= BUSINESSES ================= */}
+
+            <h2>Businesses</h2>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Business Name</th>
+                        <th>Type</th>
+                        <th>Owner</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Actions</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {businesses.map((business) => (
+
+                        <tr key={business._id}>
+
+                            <td>
+                                {business.name}
+                            </td>
+
+                            <td>
+                                {business.type}
+                            </td>
+
+                            <td>
+                                {business.owner?.username}
+                            </td>
+
+                            <td>
+                                {business.owner?.email}
+                            </td>
+
+                            <td>
+                                {business.owner?.phone}
+                            </td>
+
+                            <td>
+
+                                <button
+                                    onClick={() =>
+                                        handleDeleteBusiness(
+                                            business._id
+                                        )
                                     }
                                 >
                                     Delete
