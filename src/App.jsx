@@ -84,7 +84,8 @@ const App = () => {
         return newAgreement;
 
     } catch (error) {
-        console.error("Failed to create agreement:", error);
+        console.error("Failed to create agreement:", error)
+        throw error
     }
 };
 
