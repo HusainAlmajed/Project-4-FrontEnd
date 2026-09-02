@@ -41,10 +41,13 @@ const AgreementDetails = (props) => {
             <p><strong>Name:</strong> {agreement.asset.name}</p>
             <p><strong>Type:</strong> {agreement.asset.assetType}</p>
             
-            {props.user && props.user.role === "customer" && String(props.user._id) === String(agreement.owner._id) ? (
+            {props.user && props.user.role === "customer" && String(props.user._id) === String(agreement.customer._id) ? (
                 <>
-                <h2>Business Information</h2>
-                <p><strong>Name:</strong> {agreement.business.name}</p>
+                    <h2>Business Information</h2>
+                <p>
+                     <strong>Business:</strong>{" "}
+                     {agreement.business?.name || "You created this agreement"}
+                </p>
             </>
             ) : null}
 
@@ -66,6 +69,14 @@ const AgreementDetails = (props) => {
             <button onClick={() => props.handleDeleteAgreement(agreement._id)}>Delete</button>
             </>
             
+            )}
+
+            {props.user &&
+            props.user.role === "customer" &&
+            String(props.user._id) === String(agreement.createdBy?._id) && (
+            <>
+            <button onClick={() => props.handleDeleteAgreement(agreement._id)}>Delete</button>
+            </>
             )}
 
         </div>
