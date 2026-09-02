@@ -1,0 +1,423 @@
+/* ================================
+   AGREEMENT PAGE
+================================ */
+
+.agreement-page {
+    min-height: 100vh;
+    padding: 50px 20px 80px;
+    background: #f5f7fb;
+}
+
+
+/* ================================
+   CONTAINER
+================================ */
+
+.agreement-container {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+
+/* ================================
+   HEADER
+================================ */
+
+.agreement-header {
+    margin-bottom: 35px;
+    animation: fadeDown 0.6s ease;
+}
+
+.agreement-header h1 {
+    margin: 0 0 8px;
+    font-size: 34px;
+    font-weight: 700;
+    color: #172033;
+}
+
+.agreement-header p {
+    margin: 0;
+    color: #7a8499;
+    font-size: 15px;
+}
+
+
+/* ================================
+   FORM
+================================ */
+
+.agreement-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+
+/* ================================
+   SECTIONS
+================================ */
+
+.form-section {
+    background: #ffffff;
+    border: 1px solid #e6eaf0;
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 8px 25px rgba(23, 32, 51, 0.05);
+
+    animation: fadeUp 0.6s ease both;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.form-section:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(23, 32, 51, 0.08);
+}
+
+
+/* ================================
+   SECTION HEADER
+================================ */
+
+.section-header {
+    margin-bottom: 25px;
+}
+
+.section-header h2 {
+    margin: 0 0 6px;
+    font-size: 20px;
+    color: #172033;
+}
+
+.section-header p {
+    margin: 0;
+    font-size: 14px;
+    color: #8791a4;
+}
+
+
+/* ================================
+   FORM GRID
+================================ */
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+
+/* ================================
+   LABELS
+================================ */
+
+.agreement-form label {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #39445a;
+}
+
+.agreement-form label span {
+    font-size: 14px;
+}
+
+
+/* ================================
+   INPUTS
+================================ */
+
+.agreement-form input,
+.agreement-form select,
+.agreement-form textarea {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 12px 14px;
+
+    border: 1px solid #dfe4ec;
+    border-radius: 9px;
+
+    background: #ffffff;
+
+    color: #172033;
+    font-size: 14px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.agreement-form input:hover,
+.agreement-form select:hover,
+.agreement-form textarea:hover {
+    border-color: #c4cbd8;
+}
+
+
+.agreement-form input:focus,
+.agreement-form select:focus,
+.agreement-form textarea:focus {
+    border-color: #5267ff;
+
+    box-shadow:
+        0 0 0 3px rgba(82, 103, 255, 0.1);
+
+    transform: translateY(-1px);
+}
+
+
+/* ================================
+   TEXTAREA
+================================ */
+
+.agreement-form textarea {
+    min-height: 110px;
+    resize: vertical;
+    line-height: 1.5;
+}
+
+
+/* ================================
+   FULL WIDTH
+================================ */
+
+.full-width {
+    margin-top: 20px;
+}
+
+
+/* ================================
+   INSPECTION
+================================ */
+
+.inspection-section {
+    position: relative;
+}
+
+
+.upload-area {
+    margin: 20px 0;
+    padding: 20px;
+
+    border: 1px dashed #ccd3df;
+    border-radius: 12px;
+
+    background: #fafbfc;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease;
+}
+
+.upload-area:hover {
+    border-color: #5267ff;
+    background: #f8f9ff;
+}
+
+
+/* ================================
+   INSPECTION IMAGES
+================================ */
+
+.inspection-images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 18px;
+}
+
+
+.inspection-image {
+    width: 150px;
+    height: 110px;
+
+    overflow: hidden;
+
+    border-radius: 10px;
+
+    border: 1px solid #e1e5ec;
+
+    animation: imageAppear 0.4s ease;
+}
+
+
+.inspection-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition: transform 0.3s ease;
+}
+
+
+.inspection-image:hover img {
+    transform: scale(1.06);
+}
+
+
+/* ================================
+   ACTIONS
+================================ */
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+
+    padding-top: 5px;
+}
+
+
+.primary-button {
+    border: none;
+    border-radius: 10px;
+
+    padding: 13px 25px;
+
+    background: #5267ff;
+    color: white;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        opacity 0.2s ease;
+}
+
+
+.primary-button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(82, 103, 255, 0.25);
+}
+
+
+.primary-button:active {
+    transform: translateY(0);
+}
+
+
+/* ================================
+   MESSAGE
+================================ */
+
+.form-message {
+    margin-top: 20px;
+
+    padding: 13px 16px;
+
+    border-radius: 9px;
+
+    background: #fff4f4;
+    border: 1px solid #ffd4d4;
+
+    color: #c0392b;
+
+    font-size: 14px;
+
+    animation: fadeUp 0.4s ease;
+}
+
+
+/* ================================
+   ANIMATIONS
+================================ */
+
+@keyframes fadeDown {
+
+    from {
+        opacity: 0;
+        transform: translateY(-15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+@keyframes fadeUp {
+
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+@keyframes imageAppear {
+
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 700px) {
+
+    .agreement-page {
+        padding: 30px 15px 60px;
+    }
+
+    .agreement-header h1 {
+        font-size: 28px;
+    }
+
+    .form-section {
+        padding: 20px;
+        border-radius: 13px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .form-actions {
+        justify-content: stretch;
+    }
+
+    .primary-button {
+        width: 100%;
+    }
+
+    .inspection-image {
+        width: 120px;
+        height: 90px;
+    }
+
+}
