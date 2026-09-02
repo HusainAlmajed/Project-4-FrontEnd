@@ -67,7 +67,16 @@ const DocumentList = (props) => {
 
 
     if (loading) {
-        return <h2>Loading documents...</h2>
+        return (
+    <div
+        className="loading-screen"
+        role="status"
+        aria-live="polite"
+    >
+        <div className="loading-spinner"></div>
+        <p>Loading documents...</p>
+    </div>
+)
     }
 
 

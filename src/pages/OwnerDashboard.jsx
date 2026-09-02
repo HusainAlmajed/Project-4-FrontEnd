@@ -37,7 +37,16 @@ const OwnerDashboard = ({ agreements = [], user }) => {
     )
 
     if (loading) {
-        return <h2>Loading Dashboard...</h2>
+       return (
+    <div
+        className="loading-screen"
+        role="status"
+        aria-live="polite"
+    >
+        <div className="loading-spinner"></div>
+        <p>Loading dashboard...</p>
+    </div>
+)
     }
 
     return (
