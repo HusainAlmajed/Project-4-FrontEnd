@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { customerSignUp } from "../services/authServices";
 import { useNavigate } from "react-router";
+import "../styles/customerSignUp.css";
 
 
-const CustomerSignUpForm = ({setUser}) => {
+const CustomerSignUpForm = ({ setUser }) => {
     const navigate = useNavigate()
 
     const initialState = {
@@ -76,62 +77,113 @@ const CustomerSignUpForm = ({setUser}) => {
     }
 
     return (
-        <div>
-            <h1>Customer Sign Up</h1>
+        <div className="auth-page">
 
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="username">Username</label>
-                <input
-                    type="text"
-                    name="username"
-                    placeholder="Username"
-                    value={formData.username}
-                    onChange={handleChange}
-                />
+            <div className="auth-card">
 
-                <label htmlFor="email">Email</label>
-                <input
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    value={formData.email}
-                    onChange={handleChange}
-                />
+                <div className="auth-header">
+                    <h1>Customer Sign Up</h1>
+                    <p>Create your account to get started</p>
+                </div>
 
-                <label htmlFor="phone">Phone</label>
-                <input
-                    type="tel"
-                    name="phone"
-                    placeholder="Phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                />
+                <form
+                    className="auth-form"
+                    onSubmit={handleSubmit}
+                >
 
-                <label htmlFor="password">Password</label>
-                <input
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    value={formData.password}
-                    onChange={handleChange}
-                />
+                    <div className="form-group">
+                        <label htmlFor="username">
+                            Username
+                        </label>
 
-                <label htmlFor="confirmPassword">Confirm Password</label>
-                <input
-                    type="password"
-                    name="confirmPassword"
-                    placeholder="Confirm Password"
-                    value={formData.confirmPassword}
-                    onChange={handleChange}
-                />
+                        <input
+                            type="text"
+                            name="username"
+                            placeholder="Enter your username"
+                            value={formData.username}
+                            onChange={handleChange}
+                        />
+                    </div>
 
-                <button type="submit">
-                    Sign Up
-                </button>
 
-            </form>
+                    <div className="form-group">
+                        <label htmlFor="email">
+                            Email
+                        </label>
 
-            {message && <p>{message}</p>}
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder="Enter your email"
+                            value={formData.email}
+                            onChange={handleChange}
+                        />
+                    </div>
+
+
+                    <div className="form-group">
+                        <label htmlFor="phone">
+                            Phone
+                        </label>
+
+                        <input
+                            type="tel"
+                            name="phone"
+                            placeholder="Enter your phone number"
+                            value={formData.phone}
+                            onChange={handleChange}
+                        />
+                    </div>
+
+
+                    <div className="form-group">
+                        <label htmlFor="password">
+                            Password
+                        </label>
+
+                        <input
+                            type="password"
+                            name="password"
+                            placeholder="Enter your password"
+                            value={formData.password}
+                            onChange={handleChange}
+                        />
+                    </div>
+
+
+                    <div className="form-group">
+                        <label htmlFor="confirmPassword">
+                            Confirm Password
+                        </label>
+
+                        <input
+                            type="password"
+                            name="confirmPassword"
+                            placeholder="Confirm your password"
+                            value={formData.confirmPassword}
+                            onChange={handleChange}
+                        />
+                    </div>
+
+
+                    <button
+                        className="auth-submit"
+                        type="submit"
+                    >
+                        Sign Up
+                    </button>
+
+                </form>
+
+
+                {message && (
+                    <p className="auth-message">
+                        {message}
+                    </p>
+                )}
+
+            </div>
+
         </div>
     )
 }
