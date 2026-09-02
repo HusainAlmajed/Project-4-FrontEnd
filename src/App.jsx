@@ -2,7 +2,7 @@ import Nav from "./components/Nav"
 import CustomerSignUpForm from "./pages/CustomerSignUp.jsx"
 import OwnerSignUpForm from "./pages/OwnerSignUp.jsx"
 import * as userServices from "../src/services/authServices.js"
-import './App.css'
+// import './App.css'
 import { Routes, Route, useNavigate } from "react-router"
 import { useState, useEffect } from "react"
 // import SignInForm from "./pages/SignInForm"
