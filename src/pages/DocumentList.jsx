@@ -43,7 +43,7 @@ const DocumentList = () => {
                     {documents.map((document) => (
                         <li key={document._id}>
                             <p>{document.title}</p>
-                            <a href="{document.url}">View document</a>
+                            <a href={document.url} target="_blank">View sdocument</a>
                             
                             <Link to={`/agreements/${agreementId}/documents/${document._id}/edit`}>Edit</Link>
                             <button onClick={() => handleDeleteDocument(document._id)}>Delete</button>
