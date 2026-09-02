@@ -1,0 +1,385 @@
+/* ================================
+   ADMIN DASHBOARD
+================================ */
+
+.admin-dashboard {
+    width: 92%;
+    max-width: 1400px;
+    margin: 40px auto 80px;
+    animation: adminFadeIn 0.5s ease;
+}
+
+/* ================================
+   HEADER
+================================ */
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.admin-header h1 {
+    margin: 0;
+    font-size: 32px;
+    color: #172554;
+    font-weight: 700;
+}
+
+.admin-header p {
+    margin: 8px 0 0;
+    color: #64748b;
+    font-size: 15px;
+}
+
+/* ================================
+   MESSAGE
+================================ */
+
+.admin-message {
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #b91c1c;
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    animation: slideDown 0.3s ease;
+}
+
+/* ================================
+   SECTIONS
+================================ */
+
+.admin-section {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 30px;
+
+    box-shadow: 0 8px 30px rgba(15, 23, 42, 0.08);
+
+    border: 1px solid #e2e8f0;
+
+    animation: fadeUp 0.5s ease both;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.admin-section:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 35px rgba(15, 23, 42, 0.11);
+}
+
+/* ================================
+   SECTION HEADER
+================================ */
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 20px;
+}
+
+.section-header h2 {
+    margin: 0;
+    color: #172554;
+    font-size: 21px;
+}
+
+.section-header p {
+    margin: 5px 0 0;
+    color: #64748b;
+    font-size: 13px;
+}
+
+.section-count {
+    background: #f1efff;
+    color: #6845e8;
+
+    padding: 8px 14px;
+
+    border-radius: 20px;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* ================================
+   TABLE
+================================ */
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 750px;
+}
+
+/* Table Header */
+
+.admin-table thead {
+    background: #f8fafc;
+}
+
+.admin-table th {
+    text-align: left;
+
+    padding: 14px 16px;
+
+    color: #64748b;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+
+    border-bottom: 1px solid #e2e8f0;
+}
+
+/* Table Rows */
+
+.admin-table tbody tr {
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.admin-table tbody tr:hover {
+    background: #fafaff;
+}
+
+/* Table Cells */
+
+.admin-table td {
+    padding: 16px;
+
+    color: #334155;
+
+    font-size: 14px;
+
+    border-bottom: 1px solid #f1f5f9;
+}
+
+/* Remove last border */
+
+.admin-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* ================================
+   USER / BUSINESS NAME
+================================ */
+
+.user-name,
+.business-name {
+    font-weight: 600;
+    color: #172554;
+}
+
+/* ================================
+   ROLE SELECT
+================================ */
+
+.role-select {
+    appearance: none;
+
+    background: #f8fafc;
+
+    border: 1px solid #cbd5e1;
+
+    border-radius: 8px;
+
+    padding: 8px 30px 8px 11px;
+
+    font-size: 13px;
+
+    color: #334155;
+
+    cursor: pointer;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.role-select:hover {
+    background: #ffffff;
+    border-color: #a78bfa;
+}
+
+.role-select:focus {
+    outline: none;
+
+    border-color: #6845e8;
+
+    box-shadow:
+        0 0 0 3px rgba(104, 69, 232, 0.12);
+}
+
+/* ================================
+   BUSINESS TYPE
+================================ */
+
+.business-type {
+    display: inline-block;
+
+    background: #f1efff;
+    color: #6845e8;
+
+    padding: 5px 10px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    text-transform: capitalize;
+}
+
+/* ================================
+   DELETE BUTTON
+================================ */
+
+.delete-button {
+    border: none;
+
+    background: #fff1f2;
+    color: #dc2626;
+
+    padding: 8px 14px;
+
+    border-radius: 8px;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.delete-button:hover {
+    background: #dc2626;
+    color: #ffffff;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 5px 12px rgba(220, 38, 38, 0.2);
+}
+
+.delete-button:active {
+    transform: scale(0.96);
+}
+
+/* ================================
+   ANIMATIONS
+================================ */
+
+@keyframes adminFadeIn {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+
+}
+
+@keyframes fadeUp {
+
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+@keyframes slideDown {
+
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 768px) {
+
+    .admin-dashboard {
+        width: 94%;
+        margin-top: 25px;
+    }
+
+    .admin-header h1 {
+        font-size: 26px;
+    }
+
+    .admin-section {
+        padding: 18px;
+    }
+
+    .section-header {
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .section-count {
+        white-space: nowrap;
+    }
+
+}
+
+@media (max-width: 500px) {
+
+    .admin-dashboard {
+        width: 95%;
+    }
+
+    .admin-header h1 {
+        font-size: 23px;
+    }
+
+    .admin-section {
+        padding: 14px;
+        border-radius: 12px;
+    }
+
+    .section-header {
+        flex-direction: column;
+    }
+
+}
