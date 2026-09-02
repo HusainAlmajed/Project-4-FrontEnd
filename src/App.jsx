@@ -18,6 +18,7 @@ import CustomerAgreement from "./pages/CostumerAgreement.jsx"
 import OwnerDashboard from "./pages/OwnerDashboard.jsx"
 import AdminDashboard from "./pages/AdminDashboard.jsx"
 import Home from "./pages/Home.jsx"
+import NotFound from "./pages/NotFound.jsx"
 
 import * as agreementServices from "./services/agreement.js"
 import SignInForm from "./pages/SignIn.jsx"
@@ -161,6 +162,8 @@ const App = () => {
         
         <Route path="/user-profile" element={<UserProfile user={user} setUser={setUser} updateUser={updateUser} />} />
 
+        <Route path="*" element={<NotFound />} />
+        
       </Routes>
     </div>
   )
