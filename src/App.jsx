@@ -91,7 +91,11 @@ const App = () => {
   const handleDeleteAgreement = async (agreementId) => {
     await agreementServices.deleteAgreement(agreementId)
     setAgreements(agreements.filter((agreement) => agreement._id !== agreementId))
-    navigate("/agreements-list")
+    if (user.role === "customer") {
+        navigate("/agreements-customer")
+    }if (user.role === "owner") {
+        navigate("/agreements-list")
+    }
   }
 
   const handleUpdateAgreement = async (agreementId, formData) => {
