@@ -100,11 +100,11 @@ const OwnerDashboard = ({ agreements = [], user }) => {
                         </td>
 
                         <td>
-                            {agreement.customer.phone }
+                            {agreement.customer?.phone}
                         </td>
 
                         <td>
-                            {agreement.asset.name}
+                            {agreement.asset?.name}
                         </td>
 
                         <td>
