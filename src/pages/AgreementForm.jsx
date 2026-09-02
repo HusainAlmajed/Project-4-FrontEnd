@@ -8,6 +8,8 @@ import UploadWidget from "../components/UploadWidget.jsx"
 const AgreementForm = (props) => {
     const navigate = useNavigate()
     const { agreementId } = useParams()
+    const [documentId, setDocumentId] = useState(null)
+    const [inspectionId, setInspectionId] = useState(null)
 
     const initialState = {
         type: "",
@@ -95,45 +97,82 @@ const AgreementForm = (props) => {
     }
 
     const handleSubmit = async (e) => {
-        e.preventDefault()
+    e.preventDefault()
 
+    try {
+        const status = calculateStatus(formData.endDate)
 
+        const agreementData = {
+            ...formData,
+            status: status,
+        }
 
-        try {
+        if (agreementId) {
+            await props.handleUpdateAgreement(
+                agreementId,
+                agreementData
+            )
 
-            const status = calculateStatus(formData.endDate)
-            const agreementData = {
-                ...formData,
-                status: status,
-            }
-
-            if (agreementId) {
-                await props.handleUpdateAgreement(agreementId, agreementData)
-            } else {
-                const newAgreement = await props.handleAddAgreement(agreementData)
-
+            if (documentId) {
+                await documentServices.update(
+                    documentId,
+                    documentData
+                )
+            } else if (documentData.title || documentData.url) {
                 await documentServices.create({
                     ...documentData,
-                    agreement: newAgreement._id,
+                    agreement: agreementId,
                 })
+            }
 
-                if (formData.assetType === 'property') {
+            if (formData.assetType === "property") {
+
+                if (inspectionId) {
+                    await inspectionServices.update(
+                        inspectionId,
+                        inspectionData
+                    )
+                } else if (
+                    inspectionData.inspectionType ||
+                    inspectionData.notes ||
+                    inspectionData.images.length > 0
+                ) {
                     await inspectionServices.create({
                         ...inspectionData,
-                        agreement: newAgreement._id,
+                        agreement: agreementId,
                     })
                 }
             }
 
-            setFormData(initialState)
-            setDocumentData(documentInitialState)
-            setInspectionData(inspectionInitialState)
-        } catch (error) {
-            setMessage(error.message)
-            console.error("Error submitting agreement form:", error)
-        }
-    }
+        } else {
+            const newAgreement =
+                await props.handleAddAgreement(agreementData)
 
+            await documentServices.create({
+                ...documentData,
+                agreement: newAgreement._id,
+            })
+
+            if (formData.assetType === "property") {
+                await inspectionServices.create({
+                    ...inspectionData,
+                    agreement: newAgreement._id,
+                })
+            }
+        }
+
+        setFormData(initialState)
+        setDocumentData(documentInitialState)
+        setInspectionData(inspectionInitialState)
+
+    } catch (error) {
+        setMessage(error.message)
+        console.error(
+            "Error submitting agreement form:",
+            error
+        )
+    }
+}
     useEffect(() => {
         const fetchAgreement = async () => {
             try {
@@ -146,12 +185,33 @@ const AgreementForm = (props) => {
                     status: agreementData.status,
                     description: agreementData.description,
                     assetName: agreementData.asset.name,
-                    assetType: agreementData.asset?.type,
+                    assetType: agreementData.asset?.assetType,
 
                     customerPhone: agreementData.customer.phone,
 
                 })
 
+                const documentData = await documentServices.index(agreementId)
+                if (documentData.length > 0) {
+                    const document = documentData[0]
+                    setDocumentId(document._id)
+                    setDocumentData({
+                        title: document.title,
+                        documentType: document.documentType,
+                        url: document.url,
+                    })
+                }
+
+                const inspectionData = await inspectionServices.index(agreementId)
+                if (inspectionData.length > 0) {
+                    setInspectionId(inspectionData._id)
+                    setInspectionData({
+                        inspectionType: inspectionData.inspectionType,
+                        notes: inspectionData.notes,
+                        date: inspectionData.date ? inspectionData[0].date.split("T")[0] : "",
+                        images: inspectionData.images,
+                    })
+                }
 
             } catch (error) {
                 console.error("Error fetching agreement:", error)

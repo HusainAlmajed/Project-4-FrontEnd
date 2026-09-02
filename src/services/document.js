@@ -18,9 +18,11 @@ const create = async (documentData) => {
     }
 }
 
-const index = async () => {
+const index = async (agreementId) => {
     try {
-        const res = await fetch (BASE_URL, {
+       const res = await fetch(
+            `${BASE_URL}?agreement=${agreementId}`,
+            {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
             },
