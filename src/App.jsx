@@ -17,7 +17,7 @@ import DocumentForm from "./pages/DocumentForm.jsx"
 import CustomerAgreement from "./pages/CostumerAgreement.jsx"
 import OwnerDashboard from "./pages/OwnerDashboard.jsx"
 import AdminDashboard from "./pages/AdminDashboard.jsx"
-
+import Home from "./pages/Home.jsx"
 
 import * as agreementServices from "./services/agreement.js"
 import SignInForm from "./pages/SignIn.jsx"
@@ -122,7 +122,7 @@ const App = () => {
 
       <Routes>
 
-        <Route path="/" element={<h1>Welcome to the Warranty App</h1>} />
+        <Route path="/" element={<Home />} />
 
 
         <Route path="/sign-up/customer" element={<CustomerSignUpForm setUser={setUser}/>} />
@@ -159,7 +159,6 @@ const App = () => {
         <Route path="/agreements/:agreementId/documents" element={<DocumentList />} />
         
         <Route path="/user-profile" element={<UserProfile user={user} setUser={setUser} updateUser={updateUser} />} />
-
 
       </Routes>
     </div>
