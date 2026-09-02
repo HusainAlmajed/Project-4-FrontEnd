@@ -3,13 +3,15 @@ import { useParams, Link } from "react-router"
 import * as documentServices from "../services/document"
 import * as inspectionServices from "../services/inspection"
 import "../styles/documentList.css"
+import * as agreementServices from "../services/agreement"
 
-const DocumentList = () => {
+const DocumentList = (props) => {
 
     const { agreementId } = useParams()
 
     const [documents, setDocuments] = useState([])
     const [inspections, setInspections] = useState([])
+    const [agreement, setAgreement] = useState(null)
 
     const [loading, setLoading] = useState(true)
 
@@ -24,6 +26,9 @@ const DocumentList = () => {
                     return
                 }
 
+                const agreementData =
+                    await agreementServices.show(agreementId)
+
                 const documentData =
                     await documentServices.index(agreementId)
 
@@ -32,6 +37,7 @@ const DocumentList = () => {
 
                 setDocuments(documentData)
                 setInspections(inspectionData)
+                setAgreement(agreementData)
 
                 setLoading(false)
 
@@ -162,144 +168,134 @@ const DocumentList = () => {
 
             </section>
 
+                {agreement?.asset?.assetType === "property" && (
+    <>
+        {/* ================= INSPECTIONS ================= */}
 
-            {/* ================= INSPECTIONS ================= */}
+        <section className="inspection-section">
 
-            <section className="inspection-section">
+            <div className="section-heading">
 
-                <div className="section-heading">
+                <p className="document-list-label">
+                    PROPERTY EVIDENCE
+                </p>
 
-                    <p className="document-list-label">
-                        PROPERTY EVIDENCE
-                    </p>
+                <h2>Property Inspections</h2>
 
-                    <h2>Property Inspections</h2>
+                <p>
+                    Photos and information recorded during
+                    the property inspection.
+                </p>
+
+            </div>
+
+            {inspections.length === 0 ? (
+
+                <div className="document-empty">
+
+                    <h3>No inspections added yet</h3>
 
                     <p>
-                        Photos and information recorded during
-                        the property inspection.
+                        There is currently no property
+                        inspection evidence for this agreement.
                     </p>
 
                 </div>
 
+            ) : (
 
-                {inspections.length === 0 ? (
+                <div className="inspection-list">
 
-                    <div className="document-empty">
+                    {inspections.map((inspection) => (
 
-                        <h3>No inspections added yet</h3>
+                        <div
+                            className="inspection-card"
+                            key={inspection._id}
+                        >
 
-                        <p>
-                            There is currently no property
-                            inspection evidence for this agreement.
-                        </p>
+                            <div className="inspection-header">
 
-                    </div>
+                                <div>
 
-                ) : (
-
-                    <div className="inspection-list">
-
-                        {inspections.map((inspection) => (
-
-                            <div
-                                className="inspection-card"
-                                key={inspection._id}
-                            >
-
-                                <div className="inspection-header">
-
-                                    <div>
-
-                                        <span className="inspection-type">
-                                            {inspection.inspectionType === "before"
-                                                ? "Before Move-in"
-                                                : "After Move-out"
-                                            }
-                                        </span>
-
-                                        <h3>
-                                            Property Inspection
-                                        </h3>
-
-                                    </div>
-
-
-                                    <span className="inspection-date">
-
-                                        {inspection.date
-                                            ? new Date(
-                                                inspection.date
-                                            ).toLocaleDateString()
-                                            : ""
+                                    <span className="inspection-type">
+                                        {inspection.inspectionType === "before"
+                                            ? "Before Move-in"
+                                            : "After Move-out"
                                         }
-
                                     </span>
+
+                                    <h3>
+                                        Property Inspection
+                                    </h3>
 
                                 </div>
 
+                                <span className="inspection-date">
+                                    {inspection.date
+                                        ? new Date(
+                                            inspection.date
+                                        ).toLocaleDateString()
+                                        : ""
+                                    }
+                                </span>
 
-                                {/* ================= IMAGES ================= */}
+                            </div>
 
-                                {inspection.images &&
-                                    inspection.images.length > 0 && (
+                            {inspection.images &&
+                                inspection.images.length > 0 && (
 
-                                        <div className="inspection-images">
+                                    <div className="inspection-images">
 
-                                            {inspection.images.map(
-                                                (image, index) => (
+                                        {inspection.images.map(
+                                            (image, index) => (
 
-                                                    <a
-                                                        href={image}
-                                                        target="_blank"
-                                                        rel="noreferrer"
-                                                        key={index}
-                                                    >
+                                                <a
+                                                    href={image}
+                                                    target="_blank"
+                                                    rel="noreferrer"
+                                                    key={index}
+                                                >
+                                                    <img
+                                                        className="inspection-image"
+                                                        src={image}
+                                                        alt={`Property inspection ${index + 1}`}
+                                                    />
+                                                </a>
 
-                                                        <img
-                                                            className="inspection-image"
-                                                            src={image}
-                                                            alt={`Property inspection ${index + 1}`}
-                                                        />
-
-                                                    </a>
-
-                                                )
-                                            )}
-
-                                        </div>
-
-                                    )}
-
-
-                                {/* ================= NOTES ================= */}
-
-                                {inspection.notes && (
-
-                                    <div className="inspection-notes">
-
-                                        <h4>
-                                            Notes
-                                        </h4>
-
-                                        <p>
-                                            {inspection.notes}
-                                        </p>
+                                            )
+                                        )}
 
                                     </div>
 
                                 )}
 
-                            </div>
+                            {inspection.notes && (
 
-                        ))}
+                                <div className="inspection-notes">
 
-                    </div>
+                                    <h4>
+                                        Notes
+                                    </h4>
 
-                )}
+                                    <p>
+                                        {inspection.notes}
+                                    </p>
 
-            </section>
+                                </div>
 
+                            )}
+
+                        </div>
+
+                    ))}
+
+                </div>
+
+            )}
+
+        </section>
+    </>
+)}
         </div>
     )
 }
