@@ -83,6 +83,9 @@ const update = async (agreementId, agreementData) => {
 }
 
 const deleteAgreement = async (agreementId) => {
+
+    if(confirm("Are you sure you want to delete this agreement? This action cannot be undone.")) {
+
     try {
         const response = await fetch(`${BASE_URL}/${agreementId}`, {
             method: "DELETE",
@@ -98,6 +101,7 @@ const deleteAgreement = async (agreementId) => {
         console.error("Error deleting agreement:", error)
         throw error
     }
+}
 }
 
 

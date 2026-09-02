@@ -65,6 +65,9 @@ const update = async (inspectionId , inspectionData) => {
 }
 
 const deleteInspection = async (inspectionId) => {
+
+    if(confirm("Are you sure you want to delete this inspection? This action cannot be undone.")) {
+
     try {
         const res = await fetch(`${BASE_URL}/${inspectionId}`, {
             method: 'DELETE',
@@ -78,6 +81,7 @@ const deleteInspection = async (inspectionId) => {
     } catch (error) {
        console.log(error) 
     }
+}
 }
 
 export {

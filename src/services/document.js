@@ -67,6 +67,9 @@ const update = async (documentId , documentData) => {
 }
 
 const deleteDocument = async (documentId) => {
+
+    if(confirm("Are you sure you want to delete this document? This action cannot be undone.")) {
+
     try {
         const res = await fetch (`${BASE_URL}/${documentId}` , { 
             method: 'DELETE',
@@ -80,6 +83,7 @@ const deleteDocument = async (documentId) => {
     } catch (error) {
         console.log(error)
     }
+}
 }
 
 export {
