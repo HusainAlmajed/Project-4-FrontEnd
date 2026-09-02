@@ -1,0 +1,296 @@
+/* =========================
+   DOCUMENT LIST PAGE
+========================= */
+
+.document-list-page {
+    max-width: 1000px;
+
+    margin: 0 auto;
+
+    padding: 50px 30px 70px;
+
+    animation: documentListFadeIn 0.5s ease;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.document-list-header {
+    margin-bottom: 30px;
+}
+
+.document-list-label {
+    margin: 0 0 8px;
+
+    color: #6b7280;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+}
+
+.document-list-header h1 {
+    margin: 0 0 8px;
+
+    color: #111827;
+
+    font-size: 30px;
+}
+
+.document-list-header p:last-child {
+    margin: 0;
+
+    color: #6b7280;
+
+    font-size: 14px;
+}
+
+
+/* =========================
+   DOCUMENT GRID
+========================= */
+
+.documents-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 15px;
+}
+
+
+/* =========================
+   DOCUMENT CARD
+========================= */
+
+.document-list-card {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 20px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 13px;
+
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.03);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.document-list-card:hover {
+    transform: translateY(-4px);
+
+    border-color: #d1d5db;
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.07);
+}
+
+
+/* =========================
+   DOCUMENT ICON
+========================= */
+
+.document-icon {
+    width: 45px;
+    height: 45px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 10px;
+
+    background: #f3f4f6;
+
+    font-size: 20px;
+
+    transition:
+        transform 0.25s ease;
+}
+
+.document-list-card:hover .document-icon {
+    transform: scale(1.08);
+}
+
+
+/* =========================
+   DOCUMENT INFO
+========================= */
+
+.document-list-info {
+    flex: 1;
+
+    min-width: 0;
+}
+
+.document-list-info h3 {
+    margin: 0 0 6px;
+
+    color: #111827;
+
+    font-size: 15px;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+.document-type {
+    display: inline-block;
+
+    padding: 4px 9px;
+
+    border-radius: 20px;
+
+    background: #f3f4f6;
+
+    color: #6b7280;
+
+    font-size: 10px;
+    font-weight: 600;
+
+    text-transform: capitalize;
+}
+
+
+/* =========================
+   VIEW BUTTON
+========================= */
+
+.document-card-action a {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 8px 13px;
+
+    border-radius: 7px;
+
+    background: #111827;
+
+    color: #ffffff;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.document-card-action a:hover {
+    background: #374151;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================
+   EMPTY STATE
+========================= */
+
+.document-empty {
+    padding: 60px 25px;
+
+    text-align: center;
+
+    background: #ffffff;
+
+    border: 1px dashed #d1d5db;
+
+    border-radius: 14px;
+}
+
+.document-empty h3 {
+    margin: 0 0 8px;
+
+    color: #374151;
+
+    font-size: 17px;
+}
+
+.document-empty p {
+    margin: 0;
+
+    color: #9ca3af;
+
+    font-size: 13px;
+}
+
+
+/* =========================
+   ANIMATION
+========================= */
+
+@keyframes documentListFadeIn {
+
+    from {
+        opacity: 0;
+
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 700px) {
+
+    .document-list-page {
+        padding: 35px 18px 50px;
+    }
+
+    .documents-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+@media (max-width: 450px) {
+
+    .document-list-card {
+        padding: 15px;
+    }
+
+    .document-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .document-card-action a {
+        padding: 7px 10px;
+    }
+
+}

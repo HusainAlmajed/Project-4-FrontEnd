@@ -1,0 +1,291 @@
+/* =========================
+   DOCUMENT PAGE
+========================= */
+
+.document-page {
+    min-height: calc(100vh - 80px);
+
+    display: flex;
+    justify-content: center;
+
+    padding: 50px 20px 70px;
+
+    background: #f8fafc;
+
+    animation: documentFadeIn 0.5s ease;
+}
+
+
+/* =========================
+   DOCUMENT CARD
+========================= */
+
+.document-card {
+    width: 100%;
+    max-width: 560px;
+
+    height: fit-content;
+
+    padding: 38px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.05);
+
+    animation: documentCardSlide 0.5s ease;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.document-header {
+    margin-bottom: 30px;
+}
+
+.document-label {
+    margin: 0 0 8px;
+
+    color: #6b7280;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+}
+
+.document-header h1 {
+    margin: 0 0 8px;
+
+    color: #111827;
+
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.document-header p:last-child {
+    margin: 0;
+
+    color: #6b7280;
+
+    font-size: 14px;
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+.document-form {
+    display: flex;
+    flex-direction: column;
+
+    gap: 20px;
+}
+
+.document-form-group {
+    display: flex;
+    flex-direction: column;
+
+    gap: 7px;
+}
+
+.document-form-group label {
+    color: #374151;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+/* =========================
+   INPUTS
+========================= */
+
+.document-form-group input,
+.document-form-group select {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 12px 14px;
+
+    border: 1px solid #d1d5db;
+    border-radius: 9px;
+
+    background: #ffffff;
+
+    color: #111827;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.25s ease;
+}
+
+.document-form-group input::placeholder {
+    color: #9ca3af;
+}
+
+.document-form-group input:focus,
+.document-form-group select:focus {
+    border-color: #6b7280;
+
+    box-shadow:
+        0 0 0 3px rgba(107, 114, 128, 0.12);
+
+    transform: translateY(-1px);
+}
+
+.document-form-group select {
+    cursor: pointer;
+}
+
+
+/* =========================
+   HELP TEXT
+========================= */
+
+.document-help {
+    color: #9ca3af;
+
+    font-size: 11px;
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+.document-submit {
+    width: 100%;
+
+    margin-top: 5px;
+
+    padding: 13px;
+
+    border: none;
+    border-radius: 9px;
+
+    background: #111827;
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.document-submit:hover {
+    background: #374151;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 18px rgba(0, 0, 0, 0.12);
+}
+
+.document-submit:active {
+    transform: translateY(0);
+
+    box-shadow: none;
+}
+
+
+/* =========================
+   MESSAGE
+========================= */
+
+.document-message {
+    margin: 18px 0 0;
+
+    padding: 11px 13px;
+
+    border-radius: 8px;
+
+    background: #fef2f2;
+
+    color: #b91c1c;
+
+    font-size: 13px;
+
+    text-align: center;
+
+    animation: documentMessageAppear 0.3s ease;
+}
+
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes documentFadeIn {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes documentCardSlide {
+
+    from {
+        opacity: 0;
+        transform: translateY(18px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes documentMessageAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    .document-page {
+        padding: 30px 15px 50px;
+    }
+
+    .document-card {
+        padding: 28px 22px;
+    }
+
+    .document-header h1 {
+        font-size: 24px;
+    }
+}
