@@ -1,7 +1,39 @@
+import { Link } from "react-router"
+
 const Home = () => {
     return (
         <main>
             <section>
+
+                <div>
+
+                    <h1>Your important records</h1>
+
+                    <p>keep warranties, rental agreements, documents and property evidence organized and east to find when you need them</p>
+
+                    <div>
+                        <Link to="/sign-up/customer">Get started</Link>
+
+                        <Link to="/sign-in">Sign in</Link>
+                    </div>
+                </div>
+
+                <div>
+                    <p>Warranties</p>
+                </div>
+
+                <div>
+                    <p>Agreements</p>
+                </div>
+
+                <div>
+                    <p>Documents</p>
+                </div>
+
+                <div>
+                    <p>Property <br /> Evidence</p>
+                </div>
+
                 <div>
                     <p>WHAT YOU CAN MANAGE</p>
 
