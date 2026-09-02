@@ -19,17 +19,17 @@ const Nav = (props) => {
                     <Link to="/dashboard">Dashboard</Link>{' | '}
                     <Link to="/agreements">Add Agreement</Link>{' | '}
                     <Link to="/user-profile">Profile</Link>{' | '}
-                {props.user.role === "owner" ? (
-                    <>
-                    <Link to="/agreements-list">Agreement List</Link>
-                    </>
-                    
-                ):(
-                    <>
-                    <Link to="/agreements-customer">Customer Agreement</Link>
-                    </>
-                )}
-                <button className="nav-signout" onClick={handleSignOut}> Sign Out </button>
+                    {props.user.role === "owner" ? (
+                        <>
+                            <Link to="/agreements-list">Agreement List</Link>
+                        </>
+
+                    ) : (
+                        <>
+                            <Link to="/agreements-customer">Customer Agreement</Link>
+                        </>
+                    )}
+                    <button className="nav-signout" onClick={handleSignOut}> Sign Out </button>
                 </>
 
             ) : (

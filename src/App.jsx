@@ -16,6 +16,7 @@ import DocumentList from "./pages/DocumentList.jsx"
 import DocumentForm from "./pages/DocumentForm.jsx"
 import CustomerAgreement from "./pages/CostumerAgreement.jsx"
 import OwnerDashboard from "./pages/OwnerDashboard.jsx"
+import AdminDashboard from "./pages/AdminDashboard.jsx"
 
 
 import * as agreementServices from "./services/agreement.js"
@@ -131,6 +132,10 @@ const App = () => {
 
         {user && user.role === "owner" && (
           <Route path="/dashboard" element={<OwnerDashboard agreements={agreements} user={user} />} />
+        )}
+
+        {user && user.role === "admin" && (
+          <Route path="/dashboard" element={<AdminDashboard user={user} />} />
         )}
         <Route path="/agreements" element={<AgreementForm handleAddAgreement={handleAddAgreement} user={user}  />} />
 
