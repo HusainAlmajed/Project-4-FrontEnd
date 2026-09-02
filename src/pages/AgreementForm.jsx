@@ -128,7 +128,6 @@ const AgreementForm = (props) => {
             setFormData(initialState)
             setDocumentData(documentInitialState)
             setInspectionData(inspectionInitialState)
-            navigate("/agreements-list")
         } catch (error) {
             setMessage(error.message)
             console.error("Error submitting agreement form:", error)

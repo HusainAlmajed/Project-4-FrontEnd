@@ -69,13 +69,23 @@ const App = () => {
 }, [])
 
   const handleAddAgreement = async (agreementData) => {
-    const newAgreement = await agreementServices.create(agreementData)
+    try {
+        const newAgreement = await agreementServices.create(agreementData);
 
-    setAgreements([newAgreement, ...agreements])
-    return newAgreement
+        setAgreements([newAgreement, ...agreements]);
 
-    // navigate("/agreements-list")
-  }
+        if (user.role === "customer") {
+            navigate("/agreements-customer");
+        } if (user.role === "owner") {
+            navigate("/agreements-list");
+        }
+
+        return newAgreement;
+
+    } catch (error) {
+        console.error("Failed to create agreement:", error);
+    }
+};
 
   const handleDeleteAgreement = async (agreementId) => {
     await agreementServices.deleteAgreement(agreementId)
