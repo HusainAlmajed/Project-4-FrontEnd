@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useNavigate } from "react-router"
 import UploadWidget from "../components/UploadWidget"
+import "../styles/userProfil.css"
 
 
 const UserProfile = (props) => {
@@ -70,92 +71,187 @@ const UserProfile = (props) => {
         navigate('/')
     }
     return (
-        <div className="profile">
+        <div className="profile-page">
 
-            <h1>My Profile</h1>
+            <div className="profile-header">
+                <p className="profile-label">ACCOUNT</p>
+                <h1>My Profile</h1>
+                <p className="profile-subtitle">
+                    Manage your personal information
+                </p>
+            </div>
+
 
             {!isEditing ? (
-                <div>
-                    {props.user.profileImage && (
-                        <img
-                            src={props.user.profileImage}
-                            alt="Profile"
-                            width="150"
-                        />
-                    )}
 
-                    <p>
-                        <strong>Username:</strong>{" "}
-                        {props.user.username}
-                    </p>
+                <div className="profile-card">
 
-                    <p>
-                        <strong>Email:</strong>{" "}
-                        {props.user.email}
-                    </p>
+                    <div className="profile-image-section">
 
-                    <p>
-                        <strong>Phone:</strong>{" "}
-                        {props.user.phone}
-                    </p>
+                        {props.user.profileImage ? (
+                            <img
+                                className="profile-image"
+                                src={props.user.profileImage}
+                                alt="Profile"
+                            />
+                        ) : (
+                            <div className="profile-image-placeholder">
+                                {props.user.username?.charAt(0).toUpperCase()}
+                            </div>
+                        )}
 
-                    <button onClick={handleEdite}>
-                        Edit Profile
-                    </button>
+                    </div>
 
-                    <button onClick={handleSignOut}>
-                        Sign Out
-                    </button>
+
+                    <div className="profile-info">
+
+                        <div className="profile-info-item">
+                            <span>Username</span>
+                            <p>{props.user.username}</p>
+                        </div>
+
+                        <div className="profile-info-item">
+                            <span>Email</span>
+                            <p>{props.user.email}</p>
+                        </div>
+
+                        <div className="profile-info-item">
+                            <span>Phone</span>
+                            <p>{props.user.phone}</p>
+                        </div>
+
+                    </div>
+
+
+                    <div className="profile-actions">
+
+                        <button
+                            className="profile-edit-button"
+                            onClick={handleEdite}
+                        >
+                            Edit Profile
+                        </button>
+
+                        <button
+                            className="profile-signout-button"
+                            onClick={handleSignOut}
+                        >
+                            Sign Out
+                        </button>
+
+                    </div>
+
                 </div>
+
             ) : (
-                <form onSubmit={handleSubmit}>
-                    <label htmlFor="username">Username</label>
-                    <input
-                        type="text"
-                        name="username"
-                        value={formData.username}
-                        onChange={handleChange}
-                    />
 
-                    <label htmlFor="email">Email</label>
-                    <input
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                    />
+                <div className="profile-card edit-profile-card">
 
-                    <label htmlFor="phone">Phone</label>
-                    <input
-                        type="tel"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleChange}
-                    />
-                    <label >Profile Image</label>
-
-                    <UploadWidget setImage={handleImageUpload} />
-
-                    {props.user.profileImage && (
-                        <img
-                            src={props.user.profileImage}
-                            alt="Profile Preview"
-                            width="150"
-                        />
-                    )}
-
-                    <button type="submit">
-                        Save Changes
-                    </button>
-
-                    <button
-                        type="button"
-                        onClick={handleCancel}
+                    <form
+                        className="profile-form"
+                        onSubmit={handleSubmit}
                     >
-                        Cancel
-                    </button>
 
-                </form>
+                        <div className="profile-form-group">
+
+                            <label htmlFor="username">
+                                Username
+                            </label>
+
+                            <input
+                                type="text"
+                                name="username"
+                                value={formData.username}
+                                onChange={handleChange}
+                            />
+
+                        </div>
+
+
+                        <div className="profile-form-group">
+
+                            <label htmlFor="email">
+                                Email
+                            </label>
+
+                            <input
+                                type="email"
+                                name="email"
+                                value={formData.email}
+                                onChange={handleChange}
+                            />
+
+                        </div>
+
+
+                        <div className="profile-form-group">
+
+                            <label htmlFor="phone">
+                                Phone
+                            </label>
+
+                            <input
+                                type="tel"
+                                name="phone"
+                                value={formData.phone}
+                                onChange={handleChange}
+                            />
+
+                        </div>
+
+
+                        <div className="profile-form-group">
+
+                            <label>
+                                Profile Image
+                            </label>
+
+                            <UploadWidget
+                                setImage={handleImageUpload}
+                            />
+
+                        </div>
+
+
+                        {props.user.profileImage && (
+
+                            <div className="profile-preview">
+
+                                <img
+                                    src={props.user.profileImage}
+                                    alt="Profile Preview"
+                                />
+
+                                <span>Profile image preview</span>
+
+                            </div>
+
+                        )}
+
+
+                        <div className="profile-form-actions">
+
+                            <button
+                                className="profile-save-button"
+                                type="submit"
+                            >
+                                Save Changes
+                            </button>
+
+                            <button
+                                className="profile-cancel-button"
+                                type="button"
+                                onClick={handleCancel}
+                            >
+                                Cancel
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
             )}
 
         </div>

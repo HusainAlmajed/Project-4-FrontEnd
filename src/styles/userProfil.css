@@ -1,0 +1,465 @@
+/* =========================================
+   PROFILE PAGE
+========================================= */
+
+.profile-page {
+    min-height: 100vh;
+    padding: 55px 6%;
+    background: #f7f8fa;
+    animation: profileFadeIn 0.6s ease;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.profile-header {
+    margin-bottom: 35px;
+    animation: profileSlideDown 0.6s ease;
+}
+
+.profile-label {
+    margin: 0 0 7px;
+
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+
+    color: #999;
+}
+
+.profile-header h1 {
+    margin: 0;
+
+    font-size: 38px;
+    font-weight: 700;
+    letter-spacing: -1px;
+
+    color: #171717;
+}
+
+.profile-subtitle {
+    margin-top: 9px;
+
+    color: #777;
+    font-size: 15px;
+}
+
+
+/* =========================================
+   PROFILE CARD
+========================================= */
+
+.profile-card {
+    max-width: 700px;
+
+    background: white;
+
+    border: 1px solid #e8e8e8;
+    border-radius: 20px;
+
+    padding: 35px;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.04);
+
+    animation: profileSlideUp 0.7s ease;
+
+    transition:
+        box-shadow 0.3s ease,
+        transform 0.3s ease;
+}
+
+.profile-card:hover {
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.07);
+}
+
+
+/* =========================================
+   PROFILE IMAGE
+========================================= */
+
+.profile-image-section {
+    display: flex;
+    justify-content: center;
+
+    margin-bottom: 30px;
+}
+
+.profile-image {
+    width: 130px;
+    height: 130px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    border: 5px solid #f4f4f4;
+
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.profile-image:hover {
+    transform: scale(1.04);
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+
+/* Placeholder when no image */
+
+.profile-image-placeholder {
+    width: 130px;
+    height: 130px;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #f1f1f1;
+
+    color: #555;
+
+    font-size: 42px;
+    font-weight: 600;
+
+    border: 5px solid #f8f8f8;
+}
+
+
+/* =========================================
+   USER INFORMATION
+========================================= */
+
+.profile-info {
+    border-top: 1px solid #eeeeee;
+}
+
+.profile-info-item {
+    padding: 18px 5px;
+
+    border-bottom: 1px solid #eeeeee;
+
+    transition:
+        padding-left 0.25s ease,
+        background 0.25s ease;
+}
+
+.profile-info-item:hover {
+    padding-left: 10px;
+    background: #fafafa;
+}
+
+.profile-info-item span {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #999;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.profile-info-item p {
+    margin: 0;
+
+    color: #222;
+
+    font-size: 15px;
+}
+
+
+/* =========================================
+   PROFILE ACTIONS
+========================================= */
+
+.profile-actions {
+    display: flex;
+    gap: 12px;
+
+    margin-top: 30px;
+}
+
+.profile-actions button,
+.profile-form-actions button {
+    border: none;
+    border-radius: 9px;
+
+    padding: 12px 20px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease;
+}
+
+
+/* Edit */
+
+.profile-edit-button {
+    background: #171717;
+    color: white;
+}
+
+.profile-edit-button:hover {
+    transform: translateY(-2px);
+
+    box-shadow: 0 7px 16px rgba(0, 0, 0, 0.15);
+}
+
+
+/* Sign out */
+
+.profile-signout-button {
+    background: #f1f1f1;
+    color: #333;
+}
+
+.profile-signout-button:hover {
+    background: #e7e7e7;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================
+   EDIT FORM
+========================================= */
+
+.edit-profile-card {
+    animation: profileSlideUp 0.5s ease;
+}
+
+.profile-form {
+    display: flex;
+    flex-direction: column;
+
+    gap: 22px;
+}
+
+.profile-form-group {
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+.profile-form-group label {
+    font-size: 13px;
+
+    font-weight: 600;
+
+    color: #444;
+}
+
+.profile-form-group input {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 13px 15px;
+
+    border: 1px solid #ddd;
+    border-radius: 10px;
+
+    background: #fff;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.25s ease;
+}
+
+.profile-form-group input:focus {
+    border-color: #222;
+
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.06);
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================
+   IMAGE PREVIEW
+========================================= */
+
+.profile-preview {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    padding: 15px;
+
+    background: #fafafa;
+
+    border: 1px solid #eeeeee;
+
+    border-radius: 12px;
+
+    animation: profileImageAppear 0.4s ease;
+}
+
+.profile-preview img {
+    width: 80px;
+    height: 80px;
+
+    object-fit: cover;
+
+    border-radius: 12px;
+
+    border: 2px solid #eee;
+}
+
+.profile-preview span {
+    font-size: 13px;
+
+    color: #777;
+}
+
+
+/* =========================================
+   FORM BUTTONS
+========================================= */
+
+.profile-form-actions {
+    display: flex;
+
+    gap: 12px;
+
+    margin-top: 5px;
+}
+
+.profile-save-button {
+    background: #171717;
+    color: white;
+}
+
+.profile-save-button:hover {
+    transform: translateY(-2px);
+
+    box-shadow: 0 7px 16px rgba(0, 0, 0, 0.15);
+}
+
+.profile-cancel-button {
+    background: #f1f1f1;
+    color: #333;
+}
+
+.profile-cancel-button:hover {
+    background: #e5e5e5;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+
+@keyframes profileFadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes profileSlideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes profileSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes profileImageAppear {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 700px) {
+
+    .profile-page {
+        padding: 40px 20px;
+    }
+
+    .profile-header h1 {
+        font-size: 30px;
+    }
+
+    .profile-card {
+        padding: 25px;
+        border-radius: 16px;
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .profile-actions,
+    .profile-form-actions {
+        flex-direction: column;
+    }
+
+    .profile-actions button,
+    .profile-form-actions button {
+        width: 100%;
+    }
+
+    .profile-image,
+    .profile-image-placeholder {
+        width: 110px;
+        height: 110px;
+    }
+
+}
