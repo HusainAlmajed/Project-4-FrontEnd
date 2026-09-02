@@ -33,7 +33,7 @@ const UploadWidget = (props) => {
             type="button"
             onClick={() => widgetRef.current.open()}
         >
-            Upload Profile Picture
+            Upload File 
         </button>
     )
 }
