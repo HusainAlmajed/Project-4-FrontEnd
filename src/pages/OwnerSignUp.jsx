@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { ownerSignUp } from "../services/authServices";
 import { useNavigate } from "react-router";
+import "../styles/ownerSignUp.css";
 
 
-const OwnerSignUpForm = ( {setUser } ) => {
+const OwnerSignUpForm = ({ setUser }) => {
     const navigate = useNavigate()
 
     const initialState = {
@@ -80,79 +81,182 @@ const OwnerSignUpForm = ( {setUser } ) => {
 
 
     return (
-        <form onSubmit={handleSubmit}>
+        <div className="auth-page">
 
-            <h2>Owner Sign Up</h2>
+            <div className="auth-card">
 
-            <input
-                name="username"
-                placeholder="Username"
-                value={formData.username}
-                onChange={handleChange}
-            />
+                <div className="auth-header">
+                    <h1>Owner Sign Up</h1>
+                    <p>Create your owner and business account</p>
+                </div>
 
-            <input
-                name="email"
-                type="email"
-                placeholder="Email"
-                value={formData.email}
-                onChange={handleChange}
-            />
+                <form
+                    className="auth-form"
+                    onSubmit={handleSubmit}
+                >
 
-            <input
-                name="phone"
-                placeholder="Phone"
-                value={formData.phone}
-                onChange={handleChange}
-            />
+                    {/* ================= ACCOUNT DETAILS ================= */}
 
-            <input
-                name="password"
-                type="password"
-                placeholder="Password"
-                value={formData.password}
-                onChange={handleChange}
-            />
+                    <div className="form-section">
 
-            <input
-                name="confirmPassword"
-                type="password"
-                placeholder="Confirm Password"
-                value={formData.confirmPassword}
-                onChange={handleChange}
-            />
+                        <h3>Account Details</h3>
 
-            <h3>Business Details</h3>
+                        <div className="form-group">
+                            <label htmlFor="username">
+                                Username
+                            </label>
 
-            <input
-                name="name"
-                placeholder="Business Name"
-                value={formData.name}
-                onChange={handleChange}
-            />
+                            <input
+                                name="username"
+                                placeholder="Enter your username"
+                                value={formData.username}
+                                onChange={handleChange}
+                            />
+                        </div>
 
-             <label>
-                    Business Type:
-                    <select
-                        name="type"
-                        value={formData.type}
-                        onChange={handleChange}
-                        required
+
+                        <div className="form-group">
+                            <label htmlFor="email">
+                                Email
+                            </label>
+
+                            <input
+                                name="email"
+                                type="email"
+                                placeholder="Enter your email"
+                                value={formData.email}
+                                onChange={handleChange}
+                            />
+                        </div>
+
+
+                        <div className="form-group">
+                            <label htmlFor="phone">
+                                Phone
+                            </label>
+
+                            <input
+                                name="phone"
+                                placeholder="Enter your phone number"
+                                value={formData.phone}
+                                onChange={handleChange}
+                            />
+                        </div>
+
+
+                        <div className="form-group">
+                            <label htmlFor="password">
+                                Password
+                            </label>
+
+                            <input
+                                name="password"
+                                type="password"
+                                placeholder="Enter your password"
+                                value={formData.password}
+                                onChange={handleChange}
+                            />
+                        </div>
+
+
+                        <div className="form-group">
+                            <label htmlFor="confirmPassword">
+                                Confirm Password
+                            </label>
+
+                            <input
+                                name="confirmPassword"
+                                type="password"
+                                placeholder="Confirm your password"
+                                value={formData.confirmPassword}
+                                onChange={handleChange}
+                            />
+                        </div>
+
+                    </div>
+
+
+                    {/* ================= BUSINESS DETAILS ================= */}
+
+                    <div className="form-section">
+
+                        <div className="section-title">
+                            <h3>Business Details</h3>
+                            <p>Tell us about your business</p>
+                        </div>
+
+
+                        <div className="form-group">
+
+                            <label htmlFor="name">
+                                Business Name
+                            </label>
+
+                            <input
+                                name="name"
+                                placeholder="Enter your business name"
+                                value={formData.name}
+                                onChange={handleChange}
+                            />
+
+                        </div>
+
+
+                        <div className="form-group">
+
+                            <label htmlFor="type">
+                                Business Type
+                            </label>
+
+                            <select
+                                name="type"
+                                value={formData.type}
+                                onChange={handleChange}
+                                required
+                            >
+
+                                <option value="">
+                                    Select Type
+                                </option>
+
+                                <option value="shop">
+                                    Shop
+                                </option>
+
+                                <option value="property">
+                                    Property
+                                </option>
+
+                                <option value="insurance">
+                                    Insurance
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        className="auth-submit"
+                        type="submit"
                     >
-                        <option value="">Select Type</option>
-                        <option value="shop">Shop</option>
-                        <option value="property">Property</option>
-                        <option value="insurance">Insurance</option>
-                    </select>
-                </label>
+                        Create Account
+                    </button>
 
-            <button type="submit">
-                Create Account
-            </button>
+                </form>
 
-            {message && <p>{message}</p>}
 
-        </form>
+                {message && (
+                    <p className="auth-message">
+                        {message}
+                    </p>
+                )}
+
+            </div>
+
+        </div>
     )
 
 }

@@ -1,0 +1,551 @@
+/* ========================================
+   AGREEMENT DETAILS
+======================================== */
+
+.agreement-details-page {
+    min-height: calc(100vh - 70px);
+    padding: 45px 20px 70px;
+    background: #f5f7fb;
+    animation: detailsFadeIn 0.5s ease;
+}
+
+.agreement-details-card {
+    width: 90%;
+    max-width: 1050px;
+    margin: 0 auto;
+
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 18px;
+
+    padding: 35px;
+
+    box-shadow:
+        0 10px 35px rgba(15, 23, 42, 0.08);
+
+    animation: detailsSlideUp 0.5s ease;
+}
+
+
+/* ========================================
+   HEADER
+======================================== */
+
+.agreement-details-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    padding-bottom: 25px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.details-back {
+    margin: 0 0 8px;
+
+    color: #64748b;
+    font-size: 13px;
+}
+
+.agreement-details-header h1 {
+    margin: 0;
+
+    color: #172554;
+
+    font-size: 30px;
+    font-weight: 700;
+}
+
+
+/* ========================================
+   STATUS
+======================================== */
+
+.agreement-status {
+    padding: 7px 15px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    text-transform: capitalize;
+
+    background: #ecfdf5;
+    color: #059669;
+}
+
+.status-expiring-soon {
+    background: #fffbeb;
+    color: #d97706;
+}
+
+.status-expired {
+    background: #fef2f2;
+    color: #dc2626;
+}
+
+
+/* ========================================
+   SECTIONS
+======================================== */
+
+.details-section {
+    padding: 28px 0;
+
+    border-bottom: 1px solid #eef2f7;
+}
+
+.details-section:last-of-type {
+    border-bottom: none;
+}
+
+.details-section h2 {
+    margin: 0 0 20px;
+
+    color: #172554;
+
+    font-size: 19px;
+}
+
+
+/* ========================================
+   DETAILS GRID
+======================================== */
+
+.details-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 15px;
+}
+
+.detail-item {
+    background: #f8fafc;
+
+    border: 1px solid #edf1f5;
+
+    border-radius: 12px;
+
+    padding: 16px;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.detail-item:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 5px 15px rgba(15, 23, 42, 0.06);
+}
+
+.detail-item span {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #64748b;
+
+    font-size: 12px;
+}
+
+.detail-item strong {
+    color: #172554;
+
+    font-size: 15px;
+
+    text-transform: capitalize;
+}
+
+
+/* ========================================
+   DESCRIPTION
+======================================== */
+
+.description-box {
+    margin-top: 15px;
+
+    padding: 18px;
+
+    background: #fafaff;
+
+    border: 1px solid #eeeaff;
+
+    border-radius: 12px;
+}
+
+.description-box span {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #64748b;
+
+    font-size: 12px;
+}
+
+.description-box p {
+    margin: 0;
+
+    color: #334155;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+
+/* ========================================
+   ASSET
+======================================== */
+
+.asset-card {
+    display: flex;
+    align-items: center;
+
+    gap: 16px;
+
+    padding: 18px;
+
+    background: #f8fafc;
+
+    border: 1px solid #edf1f5;
+
+    border-radius: 12px;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.asset-card:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 6px 18px rgba(15, 23, 42, 0.07);
+}
+
+.asset-icon {
+    width: 55px;
+    height: 55px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: #eeeaff;
+
+    color: #6845e8;
+
+    font-size: 22px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+}
+
+.asset-info h3 {
+    margin: 0 0 7px;
+
+    color: #172554;
+
+    font-size: 16px;
+}
+
+.asset-info p {
+    margin: 0;
+
+    color: #64748b;
+
+    font-size: 13px;
+}
+
+.asset-info p span {
+    color: #475569;
+    font-weight: 600;
+}
+
+
+/* ========================================
+   PERSON
+======================================== */
+
+.person-card {
+    display: flex;
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 18px;
+
+    background: #f8fafc;
+
+    border: 1px solid #edf1f5;
+
+    border-radius: 12px;
+}
+
+.person-avatar {
+    width: 50px;
+    height: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #6845e8;
+    color: white;
+
+    font-size: 18px;
+    font-weight: 600;
+
+    text-transform: uppercase;
+}
+
+.person-card h3 {
+    margin: 0 0 5px;
+
+    color: #172554;
+
+    font-size: 15px;
+}
+
+.person-card p {
+    margin: 3px 0;
+
+    color: #64748b;
+
+    font-size: 13px;
+}
+
+
+/* ========================================
+   BUSINESS
+======================================== */
+
+.business-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 17px 18px;
+
+    background: #f8fafc;
+
+    border: 1px solid #edf1f5;
+
+    border-radius: 12px;
+}
+
+.business-info span {
+    color: #64748b;
+    font-size: 13px;
+}
+
+.business-info strong {
+    color: #172554;
+    font-size: 14px;
+}
+
+
+/* ========================================
+   DOCUMENT BUTTON
+======================================== */
+
+.documents-button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 15px 18px;
+
+    border-radius: 10px;
+
+    background: #f1efff;
+
+    color: #6845e8;
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.documents-button:hover {
+    background: #e8e3ff;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 6px 15px rgba(104, 69, 232, 0.12);
+}
+
+.documents-button span {
+    font-size: 18px;
+
+    transition: transform 0.2s ease;
+}
+
+.documents-button:hover span {
+    transform: translateX(4px);
+}
+
+
+/* ========================================
+   ACTIONS
+======================================== */
+
+.agreement-actions {
+    display: flex;
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    padding-top: 25px;
+}
+
+.edit-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 11px 20px;
+
+    border-radius: 9px;
+
+    background: #6845e8;
+    color: #ffffff;
+
+    text-decoration: none;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.edit-button:hover {
+    background: #5935d4;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 7px 18px rgba(104, 69, 232, 0.25);
+}
+
+
+/* Delete button is intentionally shared
+   with the Admin Dashboard style */
+
+.agreement-actions .delete-button {
+    border: none;
+
+    padding: 11px 20px;
+
+    border-radius: 9px;
+
+    cursor: pointer;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+/* ========================================
+   ANIMATIONS
+======================================== */
+
+@keyframes detailsFadeIn {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+
+}
+
+@keyframes detailsSlideUp {
+
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 700px) {
+
+    .agreement-details-page {
+        padding: 25px 12px 50px;
+    }
+
+    .agreement-details-card {
+        width: 100%;
+        box-sizing: border-box;
+
+        padding: 22px;
+
+        border-radius: 14px;
+    }
+
+    .agreement-details-header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .agreement-details-header h1 {
+        font-size: 25px;
+    }
+
+    .details-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .business-info {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 7px;
+    }
+
+    .agreement-actions {
+        flex-direction: column;
+    }
+
+    .edit-button,
+    .agreement-actions .delete-button {
+        width: 100%;
+        box-sizing: border-box;
+        text-align: center;
+    }
+
+}
