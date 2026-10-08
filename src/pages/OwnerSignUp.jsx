@@ -73,7 +73,7 @@ const OwnerSignUpForm = ({ setUser }) => {
             const user = JSON.parse(atob(data.token.split('.')[1])).payload
 
             setUser(user)
-            navigate('/')
+            navigate('/dashboard')
         } catch (error) {
             setMessage(error.message)
         }

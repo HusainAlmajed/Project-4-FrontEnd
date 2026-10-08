@@ -70,7 +70,7 @@ const CustomerSignUpForm = ({ setUser }) => {
 
             setUser(user)
 
-            navigate("/")
+            navigate("/dashboard")
         } catch (error) {
             setMessage(error.message)
         }
