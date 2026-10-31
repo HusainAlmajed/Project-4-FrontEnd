@@ -120,6 +120,7 @@ const DashboardCostumer = ({ agreements = [], user }) => {
                 ) : (
 
                     <div className="agreements-list">
+                        
 
                         {agreements.map((agreement) => (
 
